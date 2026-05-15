@@ -13,7 +13,7 @@
     <ul class="nav-links">
       <li><a href="../../index.html#projects">Projects</a></li>
       <li><a href="../../index.html#about">About</a></li>
-      <li><a href="mailto:your@email.com">Contact</a></li>
+      <li><a href="../../index.html#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -28,8 +28,8 @@
         </div>
         <h1>Macro Pad with Display</h1>
         <p class="subtitle">
-          Custom mechanical macro pad with an integrated small display. Hand-wired matrix,
-          custom PCB, CNC-machined enclosure, and QMK firmware with display integration.
+          Custom mechanical macro pad with an integrated small display. 
+          Designed and built from scratch — enclosure, electronic schematic, & software.
         </p>
         <div class="project-meta">
           <div class="meta-item">
@@ -38,7 +38,7 @@
           </div>
           <div class="meta-item">
             <span class="meta-label">Date</span>
-            <span class="meta-value">2024 – 2026</span>
+            <span class="meta-value">2025 – 2026</span>
           </div>
           <div class="meta-item">
             <span class="meta-label">Role</span>
@@ -52,39 +52,62 @@
         <div class="content-section">
           <h2>Overview</h2>
           <p>
-            Built from scratch — starting with the enclosure CAD in Fusion 360, through PCB
-            layout, hand-wiring the key matrix, and writing the QMK firmware layers with
-            display output. The display shows the current layer and active macros.
+            Built first from Thingiverse link to gain knowledge and then rebuilt from scratch — 
+            starting with the enclosure CAD in Fusion 360, hand-wiring the key matrix, 
+            and writing the Arduino code with
+            display output. The display shows the current profile and active macros.
           </p>
-          <p>
-            Update this section with specifics: switch choice, controller, display part
-            number, number of keys, any notable design decisions.
-          </p>
+        </div>
+        <div class="content-section">
+          <h2>Parts</h2>
+          <table class="parts-table">
+            <thead>
+              <tr><th>Part</th><th>Qty</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ESP32 microcontroller</td><td>1</td><td>—</td></tr>
+              <tr><td>Cherry MX switches</td><td>9</td><td>—</td></tr>
+              <tr><td>Rotary encoders</td><td>2</td><td>—</td></tr>
+              <tr><td>LiPo battery</td><td>1</td><td>—</td></tr>
+              <tr><td>0.96" OLED screen</td><td>1</td><td>—</td></tr>
+              <tr><td>Lithium battery charging module</td><td>1</td><td>—</td></tr>
+              <tr><td>Slide switch</td><td>1</td><td>—</td></tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="content-section">
           <h2>Images</h2>
           <div class="gallery" id="gallery">
 
-            <div class="gallery-item" onclick="openLightbox(this)">
-              <div class="gallery-placeholder">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Add image</span>
-              </div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Image 1">
+              <img src="MacroPad V3 (2).png" alt="MacroPad V3" />
+              <div class="gallery-caption">Image 1</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)">
-              <div class="gallery-placeholder">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Add image</span>
-              </div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Image 2">
+              <img src="MacroPad V3.jpg" alt="MacroPad V3" />
+              <div class="gallery-caption">Image 2</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)">
-              <div class="gallery-placeholder">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                <span>Add image</span>
-              </div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Image 3">
+              <img src="MacroPad V2 (2).jpg" alt="MacroPad V2" />
+              <div class="gallery-caption">Image 3</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Image 4">
+              <img src="MacroPad V2.png" alt="MacroPad V2" />
+              <div class="gallery-caption">Image 4</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Image 5">
+              <img src="MacroPad V1 (2).jpg" alt="MacroPad V1" />
+              <div class="gallery-caption">Image 5</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Image 6">
+              <img src="MacroPad V1.jpg" alt="MacroPad V1" />
+              <div class="gallery-caption">Image 6</div>
             </div>
 
           </div>
@@ -101,38 +124,11 @@
           <h2>Files</h2>
           <div class="file-list">
 
-            <a class="file-item" href="enclosure.f3d" download>
+            <a class="file-item" href="MacroPad_V3.f3d" download>
               <svg class="file-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               <div class="file-info">
-                <p class="file-name">Enclosure CAD (.f3d)</p>
+                <p class="file-name">MacroPad V3 (.f3d)</p>
                 <p class="file-meta">Fusion 360 source file</p>
-              </div>
-              <svg class="file-download" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </a>
-
-            <a class="file-item" href="enclosure.step" download>
-              <svg class="file-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              <div class="file-info">
-                <p class="file-name">Enclosure CAD (.step)</p>
-                <p class="file-meta">Universal STEP export</p>
-              </div>
-              <svg class="file-download" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </a>
-
-            <a class="file-item" href="pcb-gerbers.zip" download>
-              <svg class="file-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              <div class="file-info">
-                <p class="file-name">PCB gerbers (.zip)</p>
-                <p class="file-meta">Ready for fab — JLCPCB / PCBWay</p>
-              </div>
-              <svg class="file-download" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </a>
-
-            <a class="file-item" href="qmk-keymap" download>
-              <svg class="file-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              <div class="file-info">
-                <p class="file-name">QMK keymap folder</p>
-                <p class="file-meta">keymap.c + config.h + display logic</p>
               </div>
               <svg class="file-download" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
@@ -147,6 +143,7 @@
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <button class="lightbox-close" onclick="closeLightbox()">✕</button>
     <img id="lightbox-img" src="" alt="" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
   </div>
 
   <footer>
@@ -164,6 +161,7 @@
       if (!img) return;
       document.getElementById('lightbox-img').src = img.src;
       document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = el.dataset.caption || '';
       document.getElementById('lightbox').classList.add('active');
     }
     function closeLightbox() {
