@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Box — Andrew</title>
+  <meta name="description" content="Digitized collection of handwritten recipes and ideas — searchable, versioned, and organized." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <span class="nav-name">Andrew</span>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <div class="project-hero">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <span>Recipe Box</span>
+        </div>
+        <h1>Recipe Box</h1>
+        <p class="subtitle">
+          A digitized archive of handwritten recipes and kitchen notes — transcribed from the
+          originals, versioned as they evolve, and searchable by name, ingredient, or category.
+        </p>
+      </div>
+
+      <div class="project-content">
+
+        <div class="recipe-controls">
+          <div class="section-tabs" id="section-tabs" role="tablist" aria-label="Section">
+            <button class="section-tab active" type="button" data-type="">All</button>
+            <button class="section-tab" type="button" data-type="recipe">Recipes</button>
+            <button class="section-tab" type="button" data-type="idea">Ideas</button>
+          </div>
+          <input
+            type="search"
+            id="recipe-search"
+            class="recipe-search"
+            placeholder="Search recipes, ingredients, notes…"
+            aria-label="Search recipes"
+          />
+          <div class="filter-tags" id="filter-tags" aria-label="Filter by category"></div>
+        </div>
+
+        <p class="recipe-count" id="recipe-count"></p>
+
+        <div class="projects-grid" id="recipe-grid">
+
+          <!-- RECIPE CARD START — copy this block for each new entry.
+               data-type: "recipe" or "idea" (drives the section tabs)
+               data-tags: comma-separated categories (drives the filter chips automatically)
+               data-search: extra searchable text — ingredients, alternate names, source, notes -->
+          <a class="project-card recipe-card" href="sample-pancakes.html"
+             data-type="recipe"
+             data-tags="Breakfast, Family"
+             data-search="flour milk eggs butter baking powder sugar vanilla griddle grandma sample">
+            <div class="card-body">
+              <p class="card-title">Sample: Buttermilk Pancakes</p>
+              <p class="card-desc">Placeholder recipe showing the format, version switcher, and Cook's Log.</p>
+              <div class="card-tags">
+                <span class="tag">Breakfast</span>
+                <span class="tag">Family</span>
+              </div>
+            </div>
+          </a>
+          <!-- RECIPE CARD END -->
+
+          <a class="project-card recipe-card" href="sample-idea.html"
+             data-type="idea"
+             data-tags="Cocktails"
+             data-search="maple smoke old fashioned bourbon orange peel notebook sample">
+            <div class="card-body">
+              <p class="card-title">Sample Idea: Maple-Smoke Old Fashioned</p>
+              <p class="card-desc">Placeholder idea page — a scribbled note, not a finished recipe.</p>
+              <div class="card-tags">
+                <span class="tag">Cocktails</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- AUTO-CARDS: the transcription pipeline inserts new cards below this line. Do not remove this comment. -->
+
+        </div>
+
+        <p class="no-results" id="no-results" hidden>Nothing matches — try a different search.</p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" style="color: var(--text-tertiary);">← Back to portfolio</a>
+        <span style="color: var(--text-tertiary);">Andrew — 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const grid = document.getElementById('recipe-grid');
+      const cards = Array.from(grid.querySelectorAll('.recipe-card'));
+      const searchInput = document.getElementById('recipe-search');
+      const filterWrap = document.getElementById('filter-tags');
+      const tabWrap = document.getElementById('section-tabs');
+      const countEl = document.getElementById('recipe-count');
+      const noResults = document.getElementById('no-results');
+      let activeTag = null;
+      let activeType = '';
+
+      // Section tabs (All / Recipes / Ideas)
+      tabWrap.querySelectorAll('.section-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeType = btn.dataset.type;
+          tabWrap.querySelectorAll('.section-tab').forEach(b => b.classList.toggle('active', b === btn));
+          applyFilter();
+        });
+      });
+
+      // Build filter chips from the tags present on the cards
+      const tagSet = new Set();
+      cards.forEach(c => (c.dataset.tags || '').split(',').map(t => t.trim()).filter(Boolean).forEach(t => tagSet.add(t)));
+      Array.from(tagSet).sort().forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-chip';
+        btn.type = 'button';
+        btn.textContent = tag;
+        btn.addEventListener('click', () => {
+          activeTag = (activeTag === tag) ? null : tag;
+          filterWrap.querySelectorAll('.filter-chip').forEach(b =>
+            b.classList.toggle('active', b.textContent === activeTag));
+          applyFilter();
+        });
+        filterWrap.appendChild(btn);
+      });
+
+      function applyFilter() {
+        const q = searchInput.value.trim().toLowerCase();
+        let shown = 0;
+        cards.forEach(card => {
+          const tags = (card.dataset.tags || '').toLowerCase();
+          const haystack = (card.textContent + ' ' + tags + ' ' + (card.dataset.search || '')).toLowerCase();
+          const matchesSearch = !q || haystack.includes(q);
+          const matchesTag = !activeTag || tags.split(',').map(t => t.trim()).includes(activeTag.toLowerCase());
+          const matchesType = !activeType || (card.dataset.type || 'recipe') === activeType;
+          const show = matchesSearch && matchesTag && matchesType;
+          card.style.display = show ? '' : 'none';
+          if (show) shown++;
+        });
+        const label = activeType === 'idea' ? 'idea' : activeType === 'recipe' ? 'recipe' : 'entr';
+        countEl.textContent = activeType === '' ? shown + (shown === 1 ? ' entry' : ' entries')
+          : shown + ' ' + label + (shown === 1 ? '' : 's');
+        noResults.hidden = shown !== 0;
+      }
+
+      searchInput.addEventListener('input', applyFilter);
+      applyFilter();
+    })();
+  </script>
+
+</body>
+</html>

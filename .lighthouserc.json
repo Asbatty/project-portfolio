@@ -1,0 +1,28 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "http://localhost:3000/index.html",
+        "http://localhost:3000/projects/macro-pad/index.html",
+        "http://localhost:3000/projects/mohrs-circle/index.html",
+        "http://localhost:3000/projects/cctv-camcorder/index.html"
+      ],
+      "startServerCommand": "npx http-server . -p 3000",
+      "startServerReadyPattern": "Available on",
+      "numberOfRuns": 1
+    },
+    "assert": {
+      "preset": "lighthouse:no-pwa",
+      "assertions": {
+        "categories:accessibility": ["error", {"minScore": 0.9}],
+        "categories:performance": ["warn", {"minScore": 0.8}],
+        "categories:best-practices": ["warn", {"minScore": 0.9}],
+        "categories:seo": ["warn", {"minScore": 0.9}]
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": ".lighthouseci"
+    }
+  }
+}

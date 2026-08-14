@@ -9,3 +9,11 @@ Thumbs.db
 # Large binary assets (use Git LFS if tracking is needed)
 *.f3d
 *.step
+
+# Dependencies
+node_modules/
+
+# Test output
+playwright-report/
+test-results/
+.lighthouseci/

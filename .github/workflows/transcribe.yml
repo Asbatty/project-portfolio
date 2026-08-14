@@ -1,0 +1,35 @@
+name: Transcribe recipe photos
+
+# Fires whenever photos are pushed into recipes/_inbox/ (from any device —
+# GitHub mobile app, github.com "Add file → Upload files", or git push).
+on:
+  push:
+    branches: [main]
+    paths:
+      - "recipes/_inbox/**"
+
+permissions:
+  contents: write
+
+jobs:
+  transcribe:
+    # Skip the bot's own commits
+    if: ${{ !contains(github.event.head_commit.message, '[skip transcribe]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Transcribe inbox photos
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Optional override, e.g. a bigger model for messy handwriting:
+          # TRANSCRIBE_MODEL: claude-sonnet-4-5
+        run: python3 scripts/transcribe_inbox.py
+
+      - name: Commit generated pages
+        run: |
+          git config user.name "recipe-box-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Transcribe recipe photos [skip transcribe]"
+          git push

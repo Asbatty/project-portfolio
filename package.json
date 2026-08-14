@@ -1,0 +1,16 @@
+{
+  "name": "project-portfolio",
+  "private": true,
+  "scripts": {
+    "test": "node tests/check-links.js && playwright test && lhci autorun",
+    "test:links": "node tests/check-links.js",
+    "test:e2e": "playwright test",
+    "test:lighthouse": "lhci autorun",
+    "serve": "http-server . -p 3000"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.14.0",
+    "@playwright/test": "^1.44.0",
+    "http-server": "^14.1.1"
+  }
+}

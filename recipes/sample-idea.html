@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- SAMPLE idea page — delete along with its card in index.html once real notes are in. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smoked Old Fashioned Maple — Recipe Box</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <span class="nav-name">Andrew</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Recipe Box</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <div class="project-hero">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <a href="index.html">Recipe Box</a>
+          <span>/</span>
+          <span id="rp-crumb"></span>
+        </div>
+        <h1 id="rp-title"></h1>
+        <p class="subtitle" id="rp-subtitle"></p>
+        <div class="project-meta" id="rp-meta"></div>
+      </div>
+
+      <div class="project-content" id="rp-content"></div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" style="color: var(--text-tertiary);">← Back to Recipe Box</a>
+        <span style="color: var(--text-tertiary);">Andrew — 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  window.RECIPE_DATA = {
+    "type": "idea",
+    "title": "Sample Idea: Maple-Smoke Old Fashioned",
+    "subtitle": "Placeholder idea page — a scribbled note, not a finished recipe. Delete once real notes are added.",
+    "category": "Cocktails",
+    "source": "Notebook, back page",
+    "original": null,
+    "body": [
+      "What if the smoke came from maple wood chips and the sweetener was the maple syrup reduction from the pancake experiments?",
+      "Maybe torch the orange peel over the chips. Needs a test run — could be gimmicky, could be great."
+    ],
+    "log": [
+      { "date": "2026-08-10", "text": "Still haven't tried it. Buy maple chips." }
+    ]
+  };
+  </script>
+  <script src="../assets/js/recipe-page.js"></script>
+
+</body>
+</html>

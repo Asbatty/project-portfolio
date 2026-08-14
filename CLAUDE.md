@@ -133,3 +133,52 @@ Recommended thumbnail: 800×450px (16:9).
 - `projects/macro-pad/index.html` — replace PDF placeholder section with actual writeup iframe
 - `projects/cctv-camcorder/index.html` — complete overview paragraph; add more images and CAD/PDF files when ready
 - `projects/mohrs-circle/` — `Prototype App.png`, `Prototype App 2.png`, `PrototypeReal.jpg` exist in folder but are not linked in the gallery
+
+
+## Recipe Box (`recipes/`)
+
+Digitized archive of handwritten recipes (finished dishes) and ideas (scribbled notes).
+Lives ONE level deep (unlike projects): from `recipes/*.html`, root is `../index.html`,
+CSS is `../assets/css/style.css`.
+
+```
+recipes/
+├── index.html          — searchable index: All/Recipes/Ideas tabs, live search, tag chips
+├── _template.html      — copy to <slug>.html for a manual entry
+├── _inbox/             — drop photos here; GitHub Action transcribes them (see below)
+├── originals/          — photos of the handwritten originals, linked from pages
+└── <slug>.html         — one page per recipe/idea
+assets/js/recipe-page.js — shared renderer for all recipe/idea pages
+```
+
+**Data-driven pages:** each page contains a `window.RECIPE_DATA` JSON block; the DOM is
+rendered by `assets/js/recipe-page.js`. To change content, edit the JSON — not the markup.
+
+- `type` — `"recipe"` (versions + ingredients/directions) or `"idea"` (freeform `body` paragraphs)
+- `versions[]` — one entry per iteration. Append a new object (bump `version`, keep the old
+  ones) when the recipe changes; the page shows a dropdown of builds, with ingredients/steps
+  changed vs. the previous version highlighted and removed ingredients listed.
+- `log[]` — Cook's Log: dated comment entries `{date, text}`. Append to add a comment.
+- `original` — path like `"originals/<slug>.jpg"` or `null`.
+
+**Index cards:** each entry needs a card in `recipes/index.html` with `data-type`
+("recipe"/"idea" — drives the tabs), `data-tags` (comma-separated — filter chips are
+generated automatically), and `data-search` (extra keywords: ingredients, source).
+The `<!-- AUTO-CARDS -->` comment is the pipeline's insertion marker — do not remove.
+
+**Transcription pipeline:** `.github/workflows/transcribe.yml` runs
+`scripts/transcribe_inbox.py` (stdlib-only, page template at
+`scripts/recipe_page_template.html`) when photos land in `recipes/_inbox/`. It calls the
+Anthropic API (`ANTHROPIC_API_KEY` repo secret; model via `TRANSCRIBE_MODEL`, default
+claude-haiku-4-5), writes the page, moves the photo to `originals/`, inserts the card, and
+commits with `[skip transcribe]`. Failed photos stay in the inbox. Setup instructions:
+`recipes/_inbox/README.md`.
+
+Recipe CSS lives in `assets/css/style.css` under `/* ---- Recipe Box ---- */`
+(search, filter chips, tabs, version bar, changed-item highlight, Cook's Log).
+
+Entry points on the landing page: "Recipe Box" nav link + card in the `#recipes` section.
+
+Current status: sample pages only (`sample-pancakes.html` — demonstrates the version
+switcher and Cook's Log — and `sample-idea.html`). Delete them and their cards once real
+entries exist. API key secret not yet configured by the user.

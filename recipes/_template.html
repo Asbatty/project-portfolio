@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- TEMPLATE — copy to <slug>.html and edit ONLY the RECIPE_DATA block below.
+     The page renders itself from that data (assets/js/recipe-page.js).
+     Then add a matching card in recipes/index.html (copy a RECIPE CARD block there).
+     The GitHub Action pipeline generates pages in this same format automatically. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe — Recipe Box</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <span class="nav-name">Andrew</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Recipe Box</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <div class="project-hero">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <a href="index.html">Recipe Box</a>
+          <span>/</span>
+          <span id="rp-crumb"></span>
+        </div>
+        <h1 id="rp-title"></h1>
+        <p class="subtitle" id="rp-subtitle"></p>
+        <div class="project-meta" id="rp-meta"></div>
+      </div>
+
+      <div class="project-content" id="rp-content"></div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" style="color: var(--text-tertiary);">← Back to Recipe Box</a>
+        <span style="color: var(--text-tertiary);">Andrew — 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  window.RECIPE_DATA = {
+    /* "recipe" or "idea" */
+    "type": "recipe",
+    "title": "RECIPE NAME",
+    "subtitle": "ONE-LINE DESCRIPTION OR ORIGIN STORY.",
+    "source": "WHOSE HANDWRITING / WHERE IT CAME FROM",
+    "category": "CATEGORY",
+    "yield": "SERVINGS OR QUANTITY",
+    /* Path to the original photo, e.g. "originals/my-recipe.jpg" — or null */
+    "original": null,
+
+    /* RECIPES: one entry per iteration. Append a new object when the recipe changes;
+       the page gets a dropdown to view old builds with changes highlighted. */
+    "versions": [
+      {
+        "version": 1,
+        "date": "2026-08",
+        "ingredients": ["INGREDIENT 1", "INGREDIENT 2"],
+        "directions": ["STEP 1", "STEP 2"],
+        "notes": "MARGIN NOTES / COMMENTARY FROM THE ORIGINAL (or empty string)"
+      }
+    ],
+
+    /* IDEAS: use type "idea", delete "versions"/"yield", and use body instead:
+    "body": ["Paragraph 1 of the note.", "Paragraph 2."],
+    */
+
+    /* Cook's Log — dated comments. Append entries over time. */
+    "log": [
+      /* { "date": "2026-08-14", "text": "Tried it with brown butter — better." } */
+    ]
+  };
+  </script>
+  <script src="../assets/js/recipe-page.js"></script>
+
+</body>
+</html>
