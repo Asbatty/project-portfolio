@@ -3,13 +3,14 @@
 
 Run by .github/workflows/transcribe.yml on every push that touches recipes/_inbox/.
 For each photo it:
-  1. sends the image to the Anthropic API (key from ANTHROPIC_API_KEY) and gets
-     structured JSON back (recipe vs idea, title, ingredients, steps, notes, tags)
+  1. auto-rotates the photo upright (phone photos of a notebook are often sideways,
+     which wrecks transcription accuracy), downscales it, then sends it to the
+     Anthropic API (key from ANTHROPIC_API_KEY) and gets structured JSON back
   2. writes recipes/<slug>.html from scripts/recipe_page_template.html
   3. moves the photo to recipes/originals/<slug>.<ext> and links it as "Original"
   4. inserts a card into recipes/index.html at the AUTO-CARDS marker
 
-Standard library only — no pip installs needed. Generated pages are drafts:
+Requires Pillow (the workflow pip-installs it). Generated pages are drafts:
 review, tweak wording/tags, and re-commit.
 """
 
@@ -21,6 +22,9 @@ import os
 import re
 import sys
 import urllib.request
+from io import BytesIO
+
+from PIL import Image, ImageOps
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INBOX = os.path.join(ROOT, "recipes", "_inbox")
@@ -29,7 +33,7 @@ INDEX = os.path.join(ROOT, "recipes", "index.html")
 TEMPLATE = os.path.join(ROOT, "scripts", "recipe_page_template.html")
 MARKER = "<!-- AUTO-CARDS: the transcription pipeline inserts new cards below this line. Do not remove this comment. -->"
 
-MODEL = os.environ.get("TRANSCRIBE_MODEL", "claude-haiku-4-5")
+MODEL = os.environ.get("TRANSCRIBE_MODEL", "claude-sonnet-4-5")
 API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 
 MEDIA_TYPES = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
@@ -65,15 +69,48 @@ def slugify(title):
     return s or "untitled"
 
 
-def call_api(image_b64, media_type):
+ORIENT_PROMPT = """This is a photo of a handwritten page. How many degrees CLOCKWISE must it be \
+rotated so the text reads normally left-to-right? Reply with exactly one number: 0, 90, 180, or 270. \
+No other text."""
+
+
+def preprocess(path, rotation=0):
+    """Rotate upright, cap the long edge, return (base64 jpeg, media_type)."""
+    im = Image.open(path)
+    im = ImageOps.exif_transpose(im)          # honour EXIF orientation if present
+    if rotation:
+        im = im.rotate(-rotation, expand=True)  # negative = clockwise
+    im = im.convert("RGB")
+    w, h = im.size
+    longest = max(w, h)
+    if longest > 1568:                        # the API downsamples past this anyway
+        scale = 1568 / longest
+        im = im.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
+    buf = BytesIO()
+    im.save(buf, "JPEG", quality=88)
+    return base64.b64encode(buf.getvalue()).decode(), "image/jpeg"
+
+
+def detect_rotation(path):
+    """Ask the model which way is up. Falls back to 0 on any problem."""
+    try:
+        b64, mt = preprocess(path)
+        text = call_api(b64, mt, ORIENT_PROMPT, max_tokens=8, raw=True)
+        deg = int(re.search(r"\d+", text).group())
+        return deg if deg in (0, 90, 180, 270) else 0
+    except Exception:
+        return 0
+
+
+def call_api(image_b64, media_type, prompt=None, max_tokens=4000, raw=False):
     body = json.dumps({
         "model": MODEL,
-        "max_tokens": 4000,
+        "max_tokens": max_tokens,
         "messages": [{
             "role": "user",
             "content": [
                 {"type": "image", "source": {"type": "base64", "media_type": media_type, "data": image_b64}},
-                {"type": "text", "text": PROMPT},
+                {"type": "text", "text": prompt or PROMPT},
             ],
         }],
     }).encode()
@@ -89,6 +126,8 @@ def call_api(image_b64, media_type):
     with urllib.request.urlopen(req, timeout=180) as resp:
         data = json.loads(resp.read())
     text = "".join(block.get("text", "") for block in data.get("content", []))
+    if raw:
+        return text.strip()
     text = re.sub(r"^```(json)?|```$", "", text.strip(), flags=re.MULTILINE).strip()
     return json.loads(text)
 
@@ -171,9 +210,11 @@ def main():
         path = os.path.join(INBOX, photo)
         ext = os.path.splitext(photo)[1].lower()
         try:
-            with open(path, "rb") as fh:
-                b64 = base64.b64encode(fh.read()).decode()
-            parsed = call_api(b64, MEDIA_TYPES[ext])
+            rotation = detect_rotation(path)
+            if rotation:
+                print(f"    {photo}: rotating {rotation}deg to upright")
+            b64, mt = preprocess(path, rotation)
+            parsed = call_api(b64, mt)
 
             slug = slugify(parsed.get("title", os.path.splitext(photo)[0]))
             n = 2
@@ -181,8 +222,18 @@ def main():
                 slug = f"{slugify(parsed.get('title', 'untitled'))}-{n}"
                 n += 1
 
-            original_name = slug + ext
-            os.replace(path, os.path.join(ORIGINALS, original_name))
+            # Save an upright, web-sized copy as the linked "original", then drop the raw file.
+            original_name = slug + ".jpg"
+            up = Image.open(path)
+            up = ImageOps.exif_transpose(up)
+            if rotation:
+                up = up.rotate(-rotation, expand=True)
+            up = up.convert("RGB")
+            w, h = up.size
+            if w > 1400:
+                up = up.resize((1400, int(h * 1400 / w)), Image.LANCZOS)
+            up.save(os.path.join(ORIGINALS, original_name), quality=82, optimize=True)
+            os.remove(path)
 
             data = build_page_data(parsed, "originals/" + original_name)
             page = template.replace("__TITLE__", html.escape(data["title"]))

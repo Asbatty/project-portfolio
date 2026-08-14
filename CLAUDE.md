@@ -135,57 +135,61 @@ Recommended thumbnail: 800×450px (16:9).
 - `projects/mohrs-circle/` — `Prototype App.png`, `Prototype App 2.png`, `PrototypeReal.jpg` exist in folder but are not linked in the gallery
 
 
+
 ## Recipe Box (`recipes/`)
 
-Digitized archive of handwritten recipes (finished dishes) and ideas (scribbled notes).
-Lives ONE level deep (unlike projects): from `recipes/*.html`, root is `../index.html`,
-CSS is `../assets/css/style.css`.
+Digitized archive of Andrew's handwritten cocktail/kitchen notebook. Two sections:
+**recipes** (finished specs) and **ideas** (loose concepts). Lives ONE level deep (unlike
+projects): from `recipes/*.html`, root is `../index.html`, CSS `../assets/css/style.css`.
 
 ```
 recipes/
 ├── index.html          — searchable index: All/Recipes/Ideas tabs, live search, tag chips
 ├── _template.html      — copy to <slug>.html for a manual entry
 ├── _inbox/             — drop photos here; GitHub Action transcribes them (see below)
-├── originals/          — photos of the handwritten originals, linked from pages
+├── originals/          — notebook-NN.jpg, upright & web-sized, linked from pages
 └── <slug>.html         — one page per recipe/idea
-assets/js/recipe-page.js — shared renderer for all recipe/idea pages
+assets/js/recipe-page.js  — shared renderer
+assets/js/recipe-admin.js — in-browser editing (see below)
 ```
 
-**Data-driven pages:** each page contains a `window.RECIPE_DATA` JSON block; the DOM is
-rendered by `assets/js/recipe-page.js`. To change content, edit the JSON — not the markup.
+**Data-driven pages:** each page contains a `window.RECIPE_DATA` JSON block rendered by
+`recipe-page.js`. Edit the JSON, not the markup.
 
 - `type` — `"recipe"` (versions + ingredients/directions) or `"idea"` (freeform `body` paragraphs)
-- `versions[]` — one entry per iteration. Append a new object (bump `version`, keep the old
-  ones) when the recipe changes; the page shows a dropdown of builds, with ingredients/steps
-  changed vs. the previous version highlighted and removed ingredients listed.
-- `log[]` — Cook's Log: dated comment entries `{date, text}`. Append to add a comment.
-- `original` — path like `"originals/<slug>.jpg"` or `null`.
+- `versions[]` — one entry per iteration. Append (bump `version`, keep old ones); the page shows
+  a build dropdown, highlights ingredients/steps changed vs. the previous version, and lists
+  removed ingredients. `peach-old-fashioned.html` is the worked example (v1 → v2).
+- `log[]` — Cook's Log: `{date, text}` entries.
+- `original` — `"originals/notebook-NN.jpg"` or `null`. Several recipes can share one notebook
+  page (one photo often holds 2–5 recipes).
 
 **Index cards:** each entry needs a card in `recipes/index.html` with `data-type`
-("recipe"/"idea" — drives the tabs), `data-tags` (comma-separated — filter chips are
-generated automatically), and `data-search` (extra keywords: ingredients, source).
-The `<!-- AUTO-CARDS -->` comment is the pipeline's insertion marker — do not remove.
+("recipe"/"idea" — drives the tabs), `data-tags` (comma-separated — filter chips generated
+automatically), `data-search` (extra keywords). The `<!-- AUTO-CARDS -->` comment is the
+pipeline's insertion marker — do not remove.
+
+**In-browser editing:** `assets/js/recipe-admin.js` adds an edit bar to every recipe/idea page.
+"Enable editing" stores a fine-grained GitHub PAT (repo-scoped, Contents read/write) in
+localStorage; "Add log entry" and "New version" then mutate `RECIPE_DATA` and commit the page
+file back to `Asbatty/project-portfolio` via the GitHub Contents API (regex-replaces the
+RECIPE_DATA block, PUT with sha). **After web edits the local clone is behind — `git pull`
+before local work.**
 
 **Transcription pipeline:** `.github/workflows/transcribe.yml` runs
-`scripts/transcribe_inbox.py` (stdlib-only, page template at
-`scripts/recipe_page_template.html`) when photos land in `recipes/_inbox/`. It calls the
-Anthropic API (`ANTHROPIC_API_KEY` repo secret; model via `TRANSCRIBE_MODEL`, default
-claude-haiku-4-5), writes the page, moves the photo to `originals/`, inserts the card, and
-commits with `[skip transcribe]`. Failed photos stay in the inbox. Setup instructions:
-`recipes/_inbox/README.md`.
+`scripts/transcribe_inbox.py` when photos land in `recipes/_inbox/`. The script asks the model
+which way is up, rotates the photo upright, downscales to 1568px, transcribes with
+`TRANSCRIBE_MODEL` (default claude-sonnet-4-5), writes the page, saves an upright web-sized copy
+to `originals/`, inserts the card, and commits with `[skip transcribe]`. Requires Pillow (the
+workflow pip-installs it) and the `ANTHROPIC_API_KEY` repo secret. Failed photos stay in the inbox.
 
-**In-browser editing:** `assets/js/recipe-admin.js` (loaded on every recipe/idea page)
-adds an edit bar: "Enable editing" stores a fine-grained GitHub PAT (repo-scoped, Contents
-read/write) in localStorage; then "Add log entry" and "New version" forms mutate
-`RECIPE_DATA` and commit the page file back to `Asbatty/project-portfolio` via the GitHub
-Contents API (regex-replaces the RECIPE_DATA block, PUT with sha). The local clone will be
-behind after web edits — `git pull` before local work.
+**Known gotcha — rotation.** The first batch was transcribed sideways with Haiku and produced
+garbage (hallucinated titles like "Carpets with Caramel" for a negroni page). Rotation detection
+plus Sonnet fixed it. If transcriptions come back nonsensical, check orientation first.
 
-Recipe CSS lives in `assets/css/style.css` under `/* ---- Recipe Box ---- */`
-(search, filter chips, tabs, version bar, changed-item highlight, Cook's Log).
+Recipe CSS lives in `assets/css/style.css` under `/* ---- Recipe Box ---- */`.
 
 Entry points on the landing page: "Recipe Box" nav link + card in the `#recipes` section.
 
-Current status: sample pages only (`sample-pancakes.html` — demonstrates the version
-switcher and Cook's Log — and `sample-idea.html`). Delete them and their cards once real
-entries exist. API key secret not yet configured by the user.
+Current contents: 19 recipes + 4 idea pages transcribed from 12 notebook photos
+(cocktails, syrups, spherification technique, and a few food recipes).

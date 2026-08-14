@@ -1,7 +1,7 @@
 name: Transcribe recipe photos
 
 # Fires whenever photos are pushed into recipes/_inbox/ (from any device —
-# GitHub mobile app, github.com "Add file → Upload files", or git push).
+# github.com "Add file → Upload files" in a mobile browser, or git push).
 on:
   push:
     branches: [main]
@@ -19,11 +19,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Pillow
+        run: pip install --quiet Pillow
+
       - name: Transcribe inbox photos
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          # Optional override, e.g. a bigger model for messy handwriting:
-          # TRANSCRIBE_MODEL: claude-sonnet-4-5
+          # Model used for transcription. Sonnet handles messy handwriting far better
+          # than Haiku; the cost difference is a few cents per batch.
+          TRANSCRIBE_MODEL: claude-sonnet-4-5
         run: python3 scripts/transcribe_inbox.py
 
       - name: Commit generated pages
