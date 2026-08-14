@@ -701,6 +701,60 @@ footer {
   font-style: italic;
 }
 
+/* In-browser editing bar */
+.admin-bar {
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 0 2rem;
+}
+
+.admin-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-btn { font-size: 13px; }
+
+.admin-quiet { color: var(--text-tertiary); }
+
+.admin-form {
+  margin-top: 1rem;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 560px;
+}
+
+.admin-form-title {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.admin-hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.admin-textarea {
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.admin-form .btn { align-self: flex-start; }
+
+.admin-status {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 0.75rem;
+}
+
+.admin-status.error { color: #c0392b; }
+
 /* File downloads */
 .file-list {
   display: flex;

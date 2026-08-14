@@ -174,6 +174,13 @@ claude-haiku-4-5), writes the page, moves the photo to `originals/`, inserts the
 commits with `[skip transcribe]`. Failed photos stay in the inbox. Setup instructions:
 `recipes/_inbox/README.md`.
 
+**In-browser editing:** `assets/js/recipe-admin.js` (loaded on every recipe/idea page)
+adds an edit bar: "Enable editing" stores a fine-grained GitHub PAT (repo-scoped, Contents
+read/write) in localStorage; then "Add log entry" and "New version" forms mutate
+`RECIPE_DATA` and commit the page file back to `Asbatty/project-portfolio` via the GitHub
+Contents API (regex-replaces the RECIPE_DATA block, PUT with sha). The local clone will be
+behind after web edits — `git pull` before local work.
+
 Recipe CSS lives in `assets/css/style.css` under `/* ---- Recipe Box ---- */`
 (search, filter chips, tabs, version bar, changed-item highlight, Cook's Log).
 
