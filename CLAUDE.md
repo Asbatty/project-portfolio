@@ -163,17 +163,28 @@ assets/js/recipe-admin.js — in-browser editing (see below)
 - `log[]` — Cook's Log: `{date, text}` entries.
 - `original` — `"originals/notebook-NN.jpg"` or `null`. Several recipes can share one notebook
   page (one photo often holds 2–5 recipes).
+- `image` — finished-dish/drink photo, `"photos/<slug>.jpg"` or `null`. Rendered as a hero
+  image at the top of the page AND as the card thumbnail on the index. Set it with the
+  "Add photo" button on the live page, or drop a file in `recipes/photos/` and set the field.
 
 **Index cards:** each entry needs a card in `recipes/index.html` with `data-type`
 ("recipe"/"idea" — drives the tabs), `data-tags` (comma-separated — filter chips generated
-automatically), `data-search` (extra keywords). The `<!-- AUTO-CARDS -->` comment is the
-pipeline's insertion marker — do not remove.
+automatically), `data-search` (extra keywords), and optionally `data-thumb` plus a
+`<div class="card-thumb"><img …></div>` before `.card-body`. The `<!-- AUTO-CARDS -->` comment
+is the pipeline's insertion marker — do not remove.
+
+**Thumbnails are adaptive:** if no card has `data-thumb`, the index renders text-only cards
+(no empty boxes). As soon as one card has a photo, the index JS gives every other card a
+placeholder thumb so the grid stays even.
 
 **In-browser editing:** `assets/js/recipe-admin.js` adds an edit bar to every recipe/idea page.
 "Enable editing" stores a fine-grained GitHub PAT (repo-scoped, Contents read/write) in
 localStorage; "Add log entry" and "New version" then mutate `RECIPE_DATA` and commit the page
 file back to `Asbatty/project-portfolio` via the GitHub Contents API (regex-replaces the
-RECIPE_DATA block, PUT with sha). **After web edits the local clone is behind — `git pull`
+RECIPE_DATA block, PUT with sha). "Add photo" resizes the chosen image client-side via canvas
+(1600px long edge, JPEG q0.85) and makes three commits: the image to `recipes/photos/<slug>.jpg`,
+the page (sets `image`), and `recipes/index.html` (adds `data-thumb` + the thumb div to that
+card only, via targeted regex on the card block). **After web edits the local clone is behind — `git pull`
 before local work.**
 
 **Transcription pipeline:** `.github/workflows/transcribe.yml` runs

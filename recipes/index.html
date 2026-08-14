@@ -409,6 +409,21 @@
         });
       });
 
+      // If any card has a photo, give the others a placeholder so the grid stays even.
+      const PLACEHOLDER = '<div class="card-thumb-placeholder">' +
+        '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">' +
+        '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>' +
+        '<path d="M21 15l-5-5L5 21"/></svg></div>';
+      if (cards.some(c => c.dataset.thumb)) {
+        cards.forEach(c => {
+          if (c.querySelector('.card-thumb')) return;
+          const ph = document.createElement('div');
+          ph.className = 'card-thumb';
+          ph.innerHTML = PLACEHOLDER;
+          c.insertBefore(ph, c.firstChild);
+        });
+      }
+
       // Build filter chips from the tags present on the cards
       const tagSet = new Set();
       cards.forEach(c => (c.dataset.tags || '').split(',').map(t => t.trim()).filter(Boolean).forEach(t => tagSet.add(t)));

@@ -35,6 +35,18 @@
 
     const content = $('rp-content');
     content.innerHTML = '';
+
+    // ---- Finished-dish photo (shown here and as the index card thumbnail) ----
+    if (d.image) {
+      const fig = document.createElement('div');
+      fig.className = 'recipe-photo';
+      const img = document.createElement('img');
+      img.src = d.image;
+      img.alt = d.title;
+      fig.appendChild(img);
+      content.appendChild(fig);
+    }
+
     const section = (title) => {
       const s = document.createElement('div');
       s.className = 'content-section';
