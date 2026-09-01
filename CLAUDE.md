@@ -6,12 +6,13 @@ Plain HTML5 / CSS3 / vanilla JS. No build step, no framework, no dependencies. F
 ## File Structure
 ```
 project-portfolio/
-├── index.html                  — Landing page: hero, project grid, about, contact
+├── index.html                  — Landing page: hero, "Projects" preview tile, "Archive"/Recipe Box tile, about, contact
 ├── assets/
 │   ├── css/style.css           — All styles (single shared stylesheet)
 │   ├── Andrew.jpeg             — Hero photo
 │   └── *.pdf                   — Resume and poster
 └── projects/
+    ├── index.html              — Projects listing page (one level deep, like recipes/index.html)
     ├── macro-pad/
     │   ├── index.html
     │   └── *.jpg / *.png / *.f3d
@@ -38,8 +39,9 @@ Dark mode: `@media (prefers-color-scheme: dark)` on `:root`. No JS toggle.
 Responsive breakpoint: `max-width: 600px` only.
 
 **Key layout classes:**
-- `.container` — max-width 900px, centred
-- `.projects-grid` — `repeat(auto-fill, minmax(260px, 1fr))`
+- `.container` — max-width 1120px, centred
+- `.projects-grid` — `repeat(auto-fill, minmax(300px, 1fr))`
+- `.preview-thumbs` — 3-up square image strip inside the landing-page "Projects" tile
 - `.gallery` — `repeat(auto-fill, minmax(220px, 1fr))`, items 4:3 ratio
 - `.project-hero`, `.project-meta`, `.meta-item`
 - `.content-section` — section block with bordered `h2`
@@ -49,10 +51,19 @@ Responsive breakpoint: `max-width: 600px` only.
 - `.lightbox`, `.lightbox-close` — full-screen overlay
 
 ## Path Conventions
-All project pages live two levels deep. From `projects/<slug>/index.html`:
+Project detail pages live two levels deep. From `projects/<slug>/index.html`:
 - Root: `../../index.html`
 - CSS: `../../assets/css/style.css`
 - Assets: `../../assets/`
+
+The `projects/index.html` listing page lives one level deep (like `recipes/index.html`):
+- Root: `../index.html`
+- CSS: `../assets/css/style.css`
+- Detail pages: `<slug>/index.html`
+
+The nav "Projects" link points at the listing page on every page
+(`projects/index.html` / `../index.html` / `../projects/index.html` by depth), not an
+in-page `#projects` anchor.
 
 ## Adding a New Project
 
@@ -102,15 +113,15 @@ Copy from an existing project page (e.g. `projects/macro-pad/index.html`). Updat
 
 The inline lightbox JS is identical across all project pages — copy it verbatim.
 
-### 3. Add a project card to `index.html`
-Inside `<div class="projects-grid">`:
+### 3. Add a project card to `projects/index.html`
+Inside `<div class="projects-grid">` (paths are relative to `projects/`):
 ```html
-<a class="project-card" href="projects/<slug>/">
+<a class="project-card" href="<slug>/index.html">
   <div class="card-thumb">
-    <img src="projects/<slug>/thumb.jpg" alt="Project name" />
+    <img src="<slug>/thumb.jpg" alt="Project name" />
   </div>
   <div class="card-body">
-    <h3 class="card-title">Project Name</h3>
+    <p class="card-title">Project Name</p>
     <p class="card-desc">One-line description.</p>
     <div class="card-tags">
       <span class="tag">Tag 1</span>
@@ -120,6 +131,11 @@ Inside `<div class="projects-grid">`:
 </a>
 ```
 Recommended thumbnail: 800×450px (16:9).
+
+The landing page (`index.html`) shows a **fixed** single "Projects" preview tile
+(`#projects` → `.preview-thumbs` with three hard-coded images linking to
+`projects/index.html`) — update those thumbnails/blurb there only if you want the
+preview to feature different projects.
 
 ## Current Project Status
 
