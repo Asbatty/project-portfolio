@@ -11,9 +11,11 @@ test.describe('Landing page', () => {
     await expect(page).toHaveTitle(/Andrew/);
   });
 
-  test('has three project cards', async ({ page }) => {
+  test('projects tile previews three thumbnails and links to the projects page', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('.project-card')).toHaveCount(3);
+    const tile = page.locator('#projects .project-card');
+    await expect(tile).toHaveAttribute('href', 'projects/index.html');
+    await expect(tile.locator('.preview-thumbs img')).toHaveCount(3);
   });
 
   test('hero photo is visible', async ({ page }) => {
@@ -24,6 +26,25 @@ test.describe('Landing page', () => {
   test('nav has five links', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('nav .nav-links a')).toHaveCount(5);
+  });
+});
+
+// ─── Projects index page ─────────────────────────────────────────────────────
+
+test.describe('Projects page', () => {
+  test('loads without JS errors and lists three project cards', async ({ page }) => {
+    const errors = [];
+    page.on('pageerror', err => errors.push(err.message));
+    await page.goto('/projects/');
+    expect(errors, `JS errors: ${errors.join(', ')}`).toHaveLength(0);
+    await expect(page.locator('.project-card')).toHaveCount(3);
+  });
+
+  test('breadcrumb links home', async ({ page }) => {
+    await page.goto('/projects/');
+    const crumb = page.locator('.breadcrumb a').first();
+    await expect(crumb).toContainText('Home');
+    await expect(crumb).toBeVisible();
   });
 });
 
@@ -46,7 +67,7 @@ for (const { slug, label } of PROJECTS) {
 
     test('breadcrumb links home', async ({ page }) => {
       await page.goto(`/projects/${slug}/`);
-      const crumb = page.locator('.breadcrumb a');
+      const crumb = page.locator('.breadcrumb a').first();
       await expect(crumb).toContainText('Home');
       await expect(crumb).toBeVisible();
     });

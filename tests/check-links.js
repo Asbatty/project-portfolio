@@ -8,7 +8,9 @@ const ROOT = path.resolve(__dirname, '..');
 function findHtmlFiles(dir) {
   const results = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
+    // scripts/ holds code-gen templates whose relative paths resolve against
+    // their output dir (recipes/), not their own location — skip them.
+    if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'scripts') continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) results.push(...findHtmlFiles(full));
     else if (entry.name.endsWith('.html')) results.push(full);
