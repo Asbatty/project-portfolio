@@ -21,9 +21,9 @@ test.describe('Landing page', () => {
     await expect(page.locator('.hero-photo img')).toBeVisible();
   });
 
-  test('nav has three links', async ({ page }) => {
+  test('nav has five links', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('nav .nav-links a')).toHaveCount(3);
+    await expect(page.locator('nav .nav-links a')).toHaveCount(5);
   });
 });
 
