@@ -3,6 +3,7 @@
     "collect": {
       "url": [
         "http://localhost:3000/index.html",
+        "http://localhost:3000/projects/index.html",
         "http://localhost:3000/projects/macro-pad/index.html",
         "http://localhost:3000/projects/mohrs-circle/index.html",
         "http://localhost:3000/projects/cctv-camcorder/index.html"

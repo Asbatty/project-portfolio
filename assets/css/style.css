@@ -78,7 +78,7 @@ nav {
 .nav-links a:hover { color: var(--text); }
 
 .container {
-  max-width: 900px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -129,7 +129,7 @@ nav {
 .hero p {
   font-size: 1.05rem;
   color: var(--text-secondary);
-  max-width: 520px;
+  max-width: 600px;
   line-height: 1.7;
 }
 
@@ -181,7 +181,7 @@ nav {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
 }
 
@@ -219,6 +219,26 @@ nav {
 .card-thumb-placeholder {
   font-size: 2rem;
   color: var(--text-tertiary);
+}
+
+/* Multi-image preview strip (landing-page "Projects" tile) */
+.preview-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--tag-bg);
+}
+
+.preview-thumbs img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.project-card:hover .preview-thumbs img {
+  transform: scale(1.03);
 }
 
 .card-body {
