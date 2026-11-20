@@ -3,19 +3,14 @@
 Research pulled from past Claude Code sessions (WorksOut, Home Assistant, Fire TV) and the
 current resume PDF. Nothing on the live site has changed yet.
 
-## 0. Decisions needed from Andrew first
+## 0. Decisions (answered Nov 20)
 
-1. **Resume source.** The two resume conversations weren't in any synced Claude Code session;
-   they were probably claude.ai chats or local-only sessions on the Windows PC. Upload the new
-   resume PDF (or paste its text) so the site can be synced to it.
-2. **Beach Closure Sign.** It's on the resume but has no project page. Add a page (needs photos),
-   or leave it resume-only?
-3. **AI credit wording** for the software projects. Suggested Role: "Solo — design & development
-   (AI-assisted)".
-4. **Scope of the smart-home pages.** Recommended: two pages. *Home Server* covers the HA
-   system, and *Fire TV HUD* covers the Android app plus the debloat. The alternative is one
-   combined page.
-5. **Fire TV HUD source.** Publish a scrubbed public repo, or describe it without a source link?
+1. **Resume source:** Andrew will send the new resume PDF later. §1 waits on it.
+2. **Beach Closure Sign:** gets its own project page (§2d). Andrew will look for photos.
+3. **AI credit:** none. Role fields list Andrew alone (e.g. "Solo — design & development").
+4. **Smart-home pages:** two separate pages, *Home Server* and *Fire TV HUD*. Each page has a
+   section on how they work together, and the two pages link to each other.
+5. **Fire TV HUD source:** stays private. The page describes it with no repo link.
 
 ## 1. Resume ↔ site sync
 
@@ -35,7 +30,7 @@ Each one follows the CLAUDE.md "Adding a New Project" steps: `projects/<slug>/in
 ### 2a. WorksOut (Lift) — `projects/worksout/` — **ready to build once screenshots exist**
 - **Card:** "An offline-first workout tracker PWA that plans each session and suggests the next
   weight from your history. No backend, no accounts." Tags: React · TypeScript · PWA · Offline-first
-- **Meta:** Web App (PWA) · Sep 2026 – present · Solo design & development (AI-assisted)
+- **Meta:** Web App (PWA) · Sep 2026 – present · Solo design & development
 - **Subtitle:** An installable, offline-first lifting tracker with double-progression weight
   suggestions, built with React and TypeScript and shared by link.
 - **Sections:**
@@ -67,13 +62,15 @@ Each one follows the CLAUDE.md "Adding a New Project" steps: `projects/<slug>/in
     fixed with `extra_module_url`.
   - Guest / house-sitter mode: a restricted dashboard with auto-off lamps and written
     instructions. Describe it **generically**, with no dates or schedules.
+  - Working with the Fire TV HUD: HA supplies the HUD's live panels and alerts, and the TV
+    power, sleep and memory-cleanup automations run from HA. Link to the Fire TV HUD page.
 - **Assets needed:** dashboard screenshots with names, presence and times blurred, plus a simple
   architecture diagram (Mac mini → HA → Matter/Thread/Zigbee/Wi-Fi devices → dashboards).
 
 ### 2c. Fire TV HUD — `projects/fire-tv-hud/` — **not ready (needs screenshots; repo decision)**
 - **Card:** "A custom Kotlin home screen for Fire TV that strips Amazon's ads and turns the TV
   into a Home Assistant control panel." Tags: Android · Kotlin · Jetpack Compose · ADB
-- **Meta:** Software / Smart Home · Oct–Nov 2026 · Designer & Developer (AI-assisted)
+- **Meta:** Software / Smart Home · Oct–Nov 2026 · Solo — design & development
 - **Sections:**
   - Debloat: ADB package disabling, DNS-blocking the packages that can't be disabled, verifying
     playback still works.
@@ -81,11 +78,23 @@ Each one follows the CLAUDE.md "Adding a New Project" steps: `projects/<slug>/in
     glow grid, Continue row, live HA panels and alert toasts.
   - Working within the hardware limits: freezes on 2 GB of RAM fixed with memory-light decoding
     plus a sleep/overnight restart, and joint Fire TV + Samsung TV power control.
-  - Link to the Home Server page.
+  - Part of a bigger system: the HUD is the TV-side front end of the Home Server. It reads
+    lights, modes, thermostat, vacuum and feeder state from HA and sends commands back. Link to
+    the Home Server page.
 - **Assets needed:** `adb shell screencap` captures of the home grid (thumbnail), lamps/modes
   and an alert toast, plus a photo of the TV.
-- **Before publishing:** confirm the debloat package count and the dates. If the repo goes public,
-  scrub the IPs, tokens and keystore first.
+- **Before publishing:** confirm the debloat package count and the dates. The source stays
+  private: no repo link, and no code excerpts that contain IPs, tokens or keystore details.
+
+### 2d. Remote Beach Closure Sign — `projects/beach-sign/` — **needs photos**
+- **Card:** "A remotely updated beach-closure sign: an Arduino with a cellular shield that
+  changes its message when it receives an SMS." Tags: Arduino · Cellular / SMS · Electronics
+- **Meta:** Team project · UW–Madison · Role: circuit design, manufacturing and testing
+- **Sections:** the problem (getting closures posted in real time), the hardware (Arduino with
+  a SIM shield, the sign build), the SMS-to-sign software, testing, and my contributions.
+  Take the details from the resume once it arrives.
+- **Assets needed:** photos of the sign, the electronics and any schematics or reports. Andrew
+  is looking for them.
 
 ## 3. Existing TODOs (from CLAUDE.md)
 - `macro-pad`: replace the PDF placeholder with the real write-up.
@@ -120,9 +129,9 @@ Separately (not a site task): rotate the Google OAuth client secret that was pas
 chat on Nov 14.
 
 ## 6. Suggested order
-1. Answers to §0, plus the new resume PDF.
-2. WorksOut page: the easiest, since the repo and live app are both public; needs screenshots only.
-3. Resume sync (§1) and landing-page refresh (§4).
-4. Home Server page.
-5. Fire TV HUD page.
-6. Existing TODOs (§3) as content becomes available.
+1. WorksOut page: the easiest, since the repo and live app are both public; needs screenshots only.
+2. Home Server and Fire TV HUD pages, built together so the cross-links and "working
+   together" sections match.
+3. Resume sync (§1) and landing-page refresh (§4), once the resume arrives.
+4. Beach Sign page, once photos are found.
+5. Existing TODOs (§3) as content becomes available.
