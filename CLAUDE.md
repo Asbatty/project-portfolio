@@ -25,8 +25,10 @@ project-portfolio/
     ├── cctv-camcorder/
     │   ├── index.html
     │   └── *.jpg
-    └── worksout/
-        └── index.html + *.png  — software project; phone screenshots + thumb.jpg
+    ├── worksout/
+    │   └── index.html + *.png  — software project; phone screenshots + thumb.jpg
+    └── led-matrix/
+        └── index.html          — in-progress placeholder (no images yet)
 ```
 
 ## CSS (`assets/css/style.css`)
@@ -160,6 +162,7 @@ preview to feature different projects.
 | mohrs-circle | 11 figures/photos (`.gallery-contain`) | 2 PDFs (Google Docs viewer) | FinalPaper.pdf, ASEE Paper.pdf | Complete; figures pulled from FinalPaper.pdf. The SolidWorks drawing in the report is a teammate's, so it's left out |
 | cctv-camcorder | 1 image | none | none | Text written; build still in progress, needs more photos |
 | worksout | 7 phone screenshots (portrait gallery) | none | none | Complete; screenshots use a seeded demo profile ("Alex") |
+| led-matrix | placeholder | none | none | In progress: 64×32 RGB panel (4 mm pitch), ESP32, 3D printed frame. Needs photos, purpose, frame CAD |
 
 ## Known TODOs
 - See `docs/portfolio-update-plan.md` for the remaining pages (Home Server, Fire TV HUD, Beach Sign).
