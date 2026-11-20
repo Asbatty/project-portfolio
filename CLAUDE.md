@@ -19,9 +19,11 @@ project-portfolio/
     ├── mohrs-circle/
     │   ├── index.html
     │   └── *.pdf / *.png / *.jpg
-    └── cctv-camcorder/
-        ├── index.html
-        └── *.jpg
+    ├── cctv-camcorder/
+    │   ├── index.html
+    │   └── *.jpg
+    └── worksout/
+        └── index.html          — software project; screenshots pending (placeholders)
 ```
 
 ## CSS (`assets/css/style.css`)
@@ -144,8 +146,14 @@ preview to feature different projects.
 | macro-pad | 6 images | placeholder only | none | Awaiting PDF writeup |
 | mohrs-circle | none | 2 PDFs (Google Docs viewer) | FinalPaper.pdf, ASEE Paper.pdf | Complete; images exist in folder but not linked |
 | cctv-camcorder | 1 image | none | none | Overview text incomplete |
+| worksout | 7 placeholders | none | none | Copy done; needs screenshots (demo profile) + card thumb |
 
 ## Known TODOs
+- `projects/worksout/` — add screenshots `today.png`, `workout.png`, `rest-timer.png`, `progress.png`,
+  `history.png`, `programs.png`, `editor.png` (each placeholder has a TODO comment with the `<img>` tag)
+  and `thumb.jpg` (16:9, from the active-workout screen) for the card in `projects/index.html`.
+  Use a demo profile — no real name/bodyweight.
+- See `docs/portfolio-update-plan.md` for the remaining pages (Home Server, Fire TV HUD, Beach Sign).
 - `projects/macro-pad/index.html` — replace PDF placeholder section with actual writeup iframe
 - `projects/cctv-camcorder/index.html` — complete overview paragraph; add more images and CAD/PDF files when ready
 - `projects/mohrs-circle/` — `Prototype App.png`, `Prototype App 2.png`, `PrototypeReal.jpg` exist in folder but are not linked in the gallery

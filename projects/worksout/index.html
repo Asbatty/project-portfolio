@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorksOut — Andrew</title>
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="../../index.html">Andrew</a>
+    <ul class="nav-links">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../index.html">Projects</a></li>
+      <li><a href="../../index.html#about">About</a></li>
+      <li><a href="../../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <div class="project-hero">
+        <div class="breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span>/</span>
+          <a href="../index.html">Projects</a>
+          <span>/</span>
+          <span>WorksOut</span>
+        </div>
+        <h1>WorksOut</h1>
+        <p class="subtitle">
+          An installable, offline-first lifting tracker that plans each session and suggests
+          the next weight from your own history. Built with React and TypeScript, shared by link.
+        </p>
+        <div class="project-meta">
+          <div class="meta-item">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">Web app (PWA)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Date</span>
+            <span class="meta-value">Sep 2026 – present</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">Solo — design &amp; development</span>
+          </div>
+        </div>
+        <div class="hero-links">
+          <a class="btn btn-solid" href="https://asbatty.github.io/WorksOut/" target="_blank" rel="noopener">Open the app</a>
+          <a class="btn" href="https://github.com/Asbatty/WorksOut" target="_blank" rel="noopener">Source on GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-content">
+
+        <div class="content-section">
+          <h2>Overview</h2>
+          <p>
+            I wanted a lifting log that tells me what to do today and what weight to use, without
+            a subscription or an account. WorksOut runs entirely on the phone: it plans the next day
+            of a rolling program, logs sets with large +/- steppers, and saves every tap. Weight
+            suggestions come from my own history using double progression: add load once every set
+            hits the top of the rep range, hold when I fall short, and reset after repeated misses.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Architecture</h2>
+          <p>
+            It's a Vite + React + TypeScript progressive web app, deployed to GitHub Pages by a
+            GitHub Actions workflow that runs the unit tests before every build. React is the only
+            runtime dependency. Routing, state, the progress chart and the icons are all hand-written.
+            Scheduling, progression and history are pure functions covered by Vitest, and a
+            validation script checks the program data (6 programs on a shared library of 74
+            exercises) before every deploy.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Keeping data safe with no server</h2>
+          <p>
+            Once friends started using it, the hard problem was durability. Browsers, especially
+            iOS Safari, can clear site storage. I compared Google Drive sync, an app-store build and
+            hosted databases, and chose the option with zero infrastructure. A first-run wizard
+            installs the app to the home screen before any data is entered, the app requests
+            persistent storage, and it prompts users to save a one-tap backup to their own
+            iCloud or Drive. Versioned schema migrations let me ship new programs and per-person
+            profiles to live installs without losing anyone's history.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Iterating from real use</h2>
+          <p>
+            Most features came from using it at the gym: sets that fold away as they're done, a
+            draggable rest timer, and a 30-minute program for morning sessions. Real use also
+            exposed a progression bug. Fixed 5 lb dumbbell jumps made light lifts bounce between
+            15 and 20 lb forever. Now the app only adds weight when an estimated one-rep max says the
+            new load is still achievable for the target reps.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Screenshots</h2>
+          <div class="gallery" id="gallery">
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Today's plan — the next day of the rolling program">
+              <!-- TODO: replace placeholder with <img src="today.png" alt="Today's plan — the next day of the rolling program" /> -->
+              <div class="gallery-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Screenshot coming soon</span></div>
+              <div class="gallery-caption">Today's plan — the next day of the rolling program</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Active workout — large +/- steppers, sets fold as they're done">
+              <!-- TODO: replace placeholder with <img src="workout.png" alt="Active workout — large +/- steppers, sets fold as they're done" /> -->
+              <div class="gallery-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Screenshot coming soon</span></div>
+              <div class="gallery-caption">Active workout — large +/- steppers, sets fold as they're done</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Draggable rest timer">
+              <!-- TODO: replace placeholder with <img src="rest-timer.png" alt="Draggable rest timer" /> -->
+              <div class="gallery-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Screenshot coming soon</span></div>
+              <div class="gallery-caption">Draggable rest timer</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Progress chart for a lift">
+              <!-- TODO: replace placeholder with <img src="progress.png" alt="Progress chart for a lift" /> -->
+              <div class="gallery-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Screenshot coming soon</span></div>
+              <div class="gallery-caption">Progress chart for a lift</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Workout history">
+              <!-- TODO: replace placeholder with <img src="history.png" alt="Workout history" /> -->
+              <div class="gallery-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Screenshot coming soon</span></div>
+              <div class="gallery-caption">Workout history</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Program picker">
+              <!-- TODO: replace placeholder with <img src="programs.png" alt="Program picker" /> -->
+              <div class="gallery-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Screenshot coming soon</span></div>
+              <div class="gallery-caption">Program picker</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Program editor">
+              <!-- TODO: replace placeholder with <img src="editor.png" alt="Program editor" /> -->
+              <div class="gallery-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Screenshot coming soon</span></div>
+              <div class="gallery-caption">Program editor</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../../index.html" style="color: var(--text-tertiary);">← Back to all projects</a>
+        <span style="color: var(--text-tertiary);">Andrew — 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      if (!img) return;
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = el.dataset.caption || '';
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>

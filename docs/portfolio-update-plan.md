@@ -27,7 +27,7 @@ current resume PDF. Nothing on the live site has changed yet.
 Each one follows the CLAUDE.md "Adding a New Project" steps: `projects/<slug>/index.html`, a card in
 `projects/index.html`, and a 16:9 800×450 thumbnail.
 
-### 2a. WorksOut (Lift) — `projects/worksout/` — **ready to build once screenshots exist**
+### 2a. WorksOut (Lift) — `projects/worksout/` — **built Nov 20 with placeholder screenshots**
 - **Card:** "An offline-first workout tracker PWA that plans each session and suggests the next
   weight from your history. No backend, no accounts." Tags: React · TypeScript · PWA · Offline-first
 - **Meta:** Web App (PWA) · Sep 2026 – present · Solo design & development
