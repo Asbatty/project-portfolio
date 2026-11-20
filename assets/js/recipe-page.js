@@ -197,7 +197,8 @@
         ol.appendChild(li);
       });
       dir.appendChild(ol);
-      versionHost.appendChild(dir);
+      // Some notebook entries are just a spec with no written method; skip the empty section.
+      if ((v.directions || []).length) versionHost.appendChild(dir);
 
       if (v.notes) {
         const n = document.createElement('div');
