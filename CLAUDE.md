@@ -19,9 +19,11 @@ project-portfolio/
     ├── mohrs-circle/
     │   ├── index.html
     │   └── *.pdf / *.png / *.jpg
-    └── cctv-camcorder/
-        ├── index.html
-        └── *.jpg
+    ├── cctv-camcorder/
+    │   ├── index.html
+    │   └── *.jpg
+    └── worksout/
+        └── index.html + *.png  — software project; phone screenshots + thumb.jpg
 ```
 
 ## CSS (`assets/css/style.css`)
@@ -43,6 +45,7 @@ Responsive breakpoint: `max-width: 600px` only.
 - `.projects-grid` — `repeat(auto-fill, minmax(300px, 1fr))`
 - `.preview-thumbs` — 3-up square image strip inside the landing-page "Projects" tile
 - `.gallery` — `repeat(auto-fill, minmax(220px, 1fr))`, items 4:3 ratio
+- `.gallery-portrait` — modifier for phone screenshots: 160px min columns, items 390:844 (no cropping)
 - `.project-hero`, `.project-meta`, `.meta-item`
 - `.content-section` — section block with bordered `h2`
 - `.parts-table` — styled `<table>`
@@ -144,8 +147,10 @@ preview to feature different projects.
 | macro-pad | 6 images | placeholder only | none | Awaiting PDF writeup |
 | mohrs-circle | none | 2 PDFs (Google Docs viewer) | FinalPaper.pdf, ASEE Paper.pdf | Complete; images exist in folder but not linked |
 | cctv-camcorder | 1 image | none | none | Overview text incomplete |
+| worksout | 7 phone screenshots (portrait gallery) | none | none | Complete; screenshots use a seeded demo profile ("Alex") |
 
 ## Known TODOs
+- See `docs/portfolio-update-plan.md` for the remaining pages (Home Server, Fire TV HUD, Beach Sign).
 - `projects/macro-pad/index.html` — replace PDF placeholder section with actual writeup iframe
 - `projects/cctv-camcorder/index.html` — complete overview paragraph; add more images and CAD/PDF files when ready
 - `projects/mohrs-circle/` — `Prototype App.png`, `Prototype App 2.png`, `PrototypeReal.jpg` exist in folder but are not linked in the gallery

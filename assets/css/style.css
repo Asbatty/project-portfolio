@@ -460,6 +460,10 @@ footer {
 
 .gallery-item:hover img { transform: scale(1.03); }
 
+/* Phone screenshots: tall tiles so nothing is cropped */
+.gallery-portrait { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+.gallery-portrait .gallery-item { aspect-ratio: 390 / 844; }
+
 .gallery-caption {
   position: absolute;
   bottom: 0;
