@@ -285,7 +285,23 @@ nav {
   .hero h1 { font-size: 1.75rem; }
   .hero-content { flex-direction: column-reverse; align-items: flex-start; }
   .hero-photo { width: 160px; height: 160px; }
-  nav { padding: 0 1rem; }
+  /* Five links don't fit beside the name on phones: put them on a second row,
+     and if even that is too narrow, scroll the row rather than the page. */
+  nav {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 0.6rem 1rem;
+    row-gap: 0.4rem;
+  }
+  .nav-links {
+    width: 100%;
+    gap: 1.1rem;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { font-size: 13px; white-space: nowrap; }
   .container { padding: 0 1rem; }
 }
 
