@@ -31,9 +31,9 @@
         </div>
         <h1>Mohr's Circle Demo Tool</h1>
         <p class="subtitle">
-          A physical stress-transformation demo built with strain gauges, an HX711 amplifier,
-          an ESP32, and a Wheatstone bridge circuit. Real-time data streams over serial
-          to a MATLAB interface that plots Mohr's circle live.
+          A stress-transformation demo for ME classes. Strain gauges in a Wheatstone bridge feed an
+          HX711 amplifier and an ESP32, which sends readings to MATLAB so Mohr's circle updates as
+          the load changes.
         </p>
         <div class="project-meta">
           <div class="meta-item">
@@ -56,17 +56,15 @@
         <div class="content-section">
           <h2>Overview</h2>
           <p>
-            The goal was to build a hands-on teaching tool for stress transformation in
-            ME coursework. Students apply loads to a cantilever beam instrumented with
-            strain gauges at known angles — the system reads the differential voltage
-            across the Wheatstone bridge, amplifies it with an HX711, and streams the
-            data over serial from an ESP32.
+            Stress transformation is hard to picture from a textbook, so we built something students
+            can load by hand and watch. A cantilever beam has strain gauges mounted at known angles.
+            The ESP32 reads the voltage change across the Wheatstone bridge through an HX711
+            amplifier and sends the data over serial.
           </p>
           <p>
-            On the software side, a MATLAB script reads the serial port, computes the
-            principal stresses and angle, and plots the updated Mohr's circle in real time.
-            I also designed the schematic in KiCad after identifying GPIO pin conflicts
-            in the original design.
+            In MATLAB, a script reads the serial port, calculates the principal stresses and their
+            angle, and redraws Mohr's circle with every new reading. I also drew up the schematic in
+            KiCad after I found GPIO pin conflicts in the original design.
           </p>
         </div>
 
@@ -115,7 +113,7 @@
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <a href="../../index.html" style="color: var(--text-tertiary);">← Back to all projects</a>
+        <a href="../index.html" style="color: var(--text-tertiary);">← Back to all projects</a>
         <span style="color: var(--text-tertiary);">Andrew — 2026</span>
       </div>
     </div>
