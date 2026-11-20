@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohr's Circle Demo Tool — Andrew</title>
+  <title>Mohr's Circle Demo Tool — Andrew Battenberg</title>
+  <meta name="description" content="Senior design project: an aluminum tube with strain gauges, an HX711 and an ESP32 feeding a MATLAB app that redraws Mohr&#x27;s circle live. Written up as an ASEE paper." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mohr&#x27;s Circle Demo Tool — Andrew Battenberg" />
+  <meta property="og:description" content="Senior design project: an aluminum tube with strain gauges, an HX711 and an ESP32 feeding a MATLAB app that redraws Mohr&#x27;s circle live. Written up as an ASEE paper." />
+  <meta property="og:url" content="https://asbatty.github.io/project-portfolio/projects/mohrs-circle/" />
+  <meta property="og:image" content="https://asbatty.github.io/project-portfolio/projects/mohrs-circle/PrototypeReal.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../../assets/css/style.css" />
 </head>
 <body>
 
   <nav>
-    <a class="nav-name" href="../../index.html">Andrew</a>
+    <a class="nav-name" href="../../index.html">Andrew Battenberg</a>
     <ul class="nav-links">
       <li><a href="../../index.html">Home</a></li>
       <li><a href="../index.html">Projects</a></li>
@@ -31,9 +38,11 @@
         </div>
         <h1>Mohr's Circle Demo Tool</h1>
         <p class="subtitle">
-          A stress-transformation demo for ME classes. Strain gauges in a Wheatstone bridge feed an
-          HX711 amplifier and an ESP32, which sends readings to MATLAB so Mohr's circle updates as
-          the load changes.
+          A teaching tool for stress transformation. An aluminum tube fitted with strain gauges
+          feeds an HX711 and an ESP32, and a MATLAB app redraws Mohr's circle as the load changes.
+        </p>
+        <p class="hero-note">
+          Written up as an ASEE work-in-progress paper. Both papers are at the bottom of this page.
         </p>
         <div class="project-meta">
           <div class="meta-item">
@@ -42,11 +51,15 @@
           </div>
           <div class="meta-item">
             <span class="meta-label">Date</span>
-            <span class="meta-value">2025-2026</span>
+            <span class="meta-value">2025 – 2026</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Role</span>
-            <span class="meta-value">Electronics, firmware, software</span>
+            <span class="meta-label">Team</span>
+            <span class="meta-value">3 people</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">My role</span>
+            <span class="meta-value">Instrumentation, electronics, testing</span>
           </div>
         </div>
       </div>
@@ -56,17 +69,117 @@
         <div class="content-section">
           <h2>Overview</h2>
           <p>
-            Stress transformation is hard to picture from a textbook, so we built something students
-            can load by hand and watch. The test piece is a tube with strain gauges mounted at known
-            angles, and we treated it as a cantilever beam for the calculations.
-            The ESP32 reads the voltage change across the Wheatstone bridge through an HX711
-            amplifier and sends the data over serial.
+            Stress transformation is hard to picture from a textbook, so this project builds
+            something students can load by hand and watch. Our client teaches Mechanics of
+            Materials at UW–Madison, a class of around 300 students, and wanted a device cheap
+            enough (about $200 each) to give one to every five or six students.
           </p>
           <p>
-            In MATLAB, a script reads the serial port, calculates the principal stresses and their
-            angle, and redraws Mohr's circle with every new reading. I also drew up the schematic in
-            KiCad after I found GPIO pin conflicts in the original design.
+            Two earlier teams designed the MATLAB app and the handheld tool but never got the
+            electronics working. Our job was to turn that into a real, instrumented prototype. The
+            test piece is a 1.5 in, 6061 aluminum tube, which we switched to from the nylon the
+            earlier teams planned on because gauges bond to it much more reliably. Two triaxial
+            rosettes pick up axial and torsional strain, and two uniaxial gauges at midspan pick up
+            bending. For the calculations we treated the tube as a cantilever beam. The ESP32 zeroes
+            the readings, filters them, and sends stress values over serial to the MATLAB app, which
+            redraws Mohr's circle with every new reading.
           </p>
+        </div>
+
+        <div class="content-section">
+          <h2>My part</h2>
+          <ul class="plain-list">
+            <li>Prepped the tube and installed the strain gauges, after practicing on scrap aluminum with the lab's instrumentation specialist</li>
+            <li>Soldered the gauges, bridges, and electronics together and did the wiring</li>
+            <li>Drew the wiring schematics, and redrew the board schematic in KiCad after I found GPIO pin conflicts in the original design</li>
+            <li>Debugged the signal chain. The first version used an AD627 amplifier into the ESP32's 12-bit ADC and kept drifting and losing bridge balance, so we moved to an HX711 24-bit ADC</li>
+            <li>Ran the calibration and noise tests</li>
+          </ul>
+        </div>
+
+        <div class="content-section">
+          <h2>Results</h2>
+          <p>
+            The design target was 1 microstrain of resolution. Using a conservative 6σ peak-to-peak
+            measure on the filtered signal, the system reached 0.645 με. Calibration was very
+            linear: R² = 0.9993 under axial load (0 to 80 lbf) and 0.9999 under cantilever bending
+            (0 to about 10 lbf).
+          </p>
+          <p>
+            The calibration constants we measured came out 58% (axial) and 62% (bending) off from
+            the hand calculations. That gap comes from using nominal gauge factor and bridge values,
+            small errors in gauge placement and tube dimensions, and uncertainty in the aluminum's
+            modulus. The system itself was consistent, so the fix is to use the measured constants.
+            The measured noise floor was also about 50 times the HX711 datasheet figure, which we
+            traced mostly to imperfect wire connections.
+          </p>
+          <p>
+            Still to do: torsion testing (the scaled-up tube didn't fit the lab's torsion machine),
+            shrinking the electronics into the handheld housing, and the classroom study to see if
+            it actually helps students.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Images</h2>
+          <div class="gallery gallery-contain" id="gallery">
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The instrumented aluminum tube with the bridge wiring run out to the electronics">
+              <img src="PrototypeReal.jpg" alt="The instrumented aluminum tube with the bridge wiring run out to the electronics" />
+              <div class="gallery-caption">The instrumented aluminum tube with the bridge wiring run out to the electronics</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Strain gauges bonded to the tube: a rosette for axial and torsion, a uniaxial gauge for bending">
+              <img src="gauges-on-tube.jpg" alt="Strain gauges bonded to the tube: a rosette for axial and torsion, a uniaxial gauge for bending" />
+              <div class="gallery-caption">Strain gauges bonded to the tube: a rosette for axial and torsion, a uniaxial gauge for bending</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Gauge layout around the tube: rosettes at 0° and 180°, bending gauges at 90° and 270°">
+              <img src="gauge-layout.png" alt="Gauge layout around the tube: rosettes at 0° and 180°, bending gauges at 90° and 270°" />
+              <div class="gallery-caption">Gauge layout around the tube: rosettes at 0° and 180°, bending gauges at 90° and 270°</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Wiring schematic for the bending half-bridge into the HX711">
+              <img src="bending-bridge-schematic.png" alt="Wiring schematic for the bending half-bridge into the HX711" />
+              <div class="gallery-caption">Wiring schematic for the bending half-bridge into the HX711</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Breadboarded HX711 and ESP32 during bring-up and debugging">
+              <img src="breadboard-hx711.jpg" alt="Breadboarded HX711 and ESP32 during bring-up and debugging" />
+              <div class="gallery-caption">Breadboarded HX711 and ESP32 during bring-up and debugging</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="FEA of the tube under 10 lbf cantilever bending, used to confirm the strain would be measurable">
+              <img src="fea-bending.png" alt="FEA of the tube under 10 lbf cantilever bending, used to confirm the strain would be measurable" />
+              <div class="gallery-caption">FEA of the tube under 10 lbf cantilever bending, used to confirm the strain would be measurable</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Axial calibration, 0 to 80 lbf in 8 lbf steps (R² = 0.9993)">
+              <img src="calibration-axial.png" alt="Axial calibration, 0 to 80 lbf in 8 lbf steps (R² = 0.9993)" />
+              <div class="gallery-caption">Axial calibration, 0 to 80 lbf in 8 lbf steps (R² = 0.9993)</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Cantilever bending calibration, 0 to 10.13 lbf (R² = 0.9999)">
+              <img src="calibration-bending.png" alt="Cantilever bending calibration, 0 to 10.13 lbf (R² = 0.9999)" />
+              <div class="gallery-caption">Cantilever bending calibration, 0 to 10.13 lbf (R² = 0.9999)</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Zero-load noise: raw signal vs. a 20-sample moving average">
+              <img src="noise-filter.png" alt="Zero-load noise: raw signal vs. a 20-sample moving average" />
+              <div class="gallery-caption">Zero-load noise: raw signal vs. a 20-sample moving average</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="MATLAB app: 2D stress transformation and Mohr's circle">
+              <img src="Prototype App.png" alt="MATLAB app: 2D stress transformation and Mohr's circle" />
+              <div class="gallery-caption">MATLAB app: 2D stress transformation and Mohr's circle</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="MATLAB app: 3D stress state and the three Mohr's circles">
+              <img src="Prototype App 2.png" alt="MATLAB app: 3D stress state and the three Mohr's circles" />
+              <div class="gallery-caption">MATLAB app: 3D stress state and the three Mohr's circles</div>
+            </div>
+
+          </div>
         </div>
 
         <div class="content-section">
@@ -85,7 +198,7 @@
               <svg class="file-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               <div class="file-info">
                 <p class="file-name">Final Paper (PDF)</p>
-                <p class="file-meta">Project report</p>
+                <p class="file-meta">Full senior design report (33 pages)</p>
               </div>
               <svg class="file-download" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
@@ -94,7 +207,7 @@
               <svg class="file-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               <div class="file-info">
                 <p class="file-name">ASEE Paper (PDF)</p>
-                <p class="file-meta">Conference paper</p>
+                <p class="file-meta">ASEE work-in-progress paper</p>
               </div>
               <svg class="file-download" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
@@ -115,7 +228,7 @@
     <div class="container">
       <div class="footer-inner">
         <a href="../index.html" style="color: var(--text-tertiary);">← Back to all projects</a>
-        <span style="color: var(--text-tertiary);">Andrew — 2026</span>
+        <span style="color: var(--text-tertiary);">Andrew Battenberg — 2026</span>
       </div>
     </div>
   </footer>

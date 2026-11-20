@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CCTV Camcorder — Andrew</title>
+  <title>CCTV Camcorder — Andrew Battenberg</title>
+  <meta name="description" content="An old CCTV security camera being turned into a battery-powered handheld camcorder." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CCTV Camcorder — Andrew Battenberg" />
+  <meta property="og:description" content="An old CCTV security camera being turned into a battery-powered handheld camcorder." />
+  <meta property="og:url" content="https://asbatty.github.io/project-portfolio/projects/cctv-camcorder/" />
+  <meta property="og:image" content="https://asbatty.github.io/project-portfolio/projects/cctv-camcorder/Camcorder%20%281%29.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../../assets/css/style.css" />
 </head>
 <body>
 
   <nav>
-    <a class="nav-name" href="../../index.html">Andrew</a>
+    <a class="nav-name" href="../../index.html">Andrew Battenberg</a>
     <ul class="nav-links">
       <li><a href="../../index.html">Home</a></li>
       <li><a href="../index.html">Projects</a></li>
@@ -41,7 +48,7 @@
           </div>
           <div class="meta-item">
             <span class="meta-label">Date</span>
-            <span class="meta-value">2026</span>
+            <span class="meta-value">2026 (in progress)</span>
           </div>
           <div class="meta-item">
             <span class="meta-label">Role</span>
@@ -55,11 +62,33 @@
         <div class="content-section">
           <h2>Overview</h2>
           <p>
-            I wanted to see if a cheap CCTV camera module could work as a real portable camcorder. I
-            designed a carrying handle and a mount for the LCD screen, then worked out the
-            electronics it needed to run and record: a 12V battery and a mini DVR. 
-            
-            
+            I had an old CCTV camera and wanted to see if I could turn it into something I'd
+            actually carry around and shoot with. Security cameras are made to sit on a wall,
+            plugged into wall power and a recorder somewhere else, so most of the work here is
+            making all of that portable.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>How it goes together</h2>
+          <p>
+            I designed a carrying handle and a mount for the LCD screen so I can frame shots while
+            holding it. Everything runs off one 12V LiPo pack. The plan is for the camera's analog
+            video to go over BNC to a mini DVR for recording and to the LCD so I can see what I'm
+            shooting.
+          </p>
+          <p>
+            Before mounting anything I laid it all out on the bench and checked the power wiring
+            and connections with a multimeter, so I knew the camera, screen, and recorder would all
+            run off the battery.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Where it's at</h2>
+          <p>
+            This one is still in progress. The photo below is from bench testing. Next up is
+            mounting everything to the handle and taking it out to shoot.
           </p>
         </div>
 
@@ -70,10 +99,10 @@
               <tr><th>Part</th><th>Qty</th><th>Notes</th></tr>
             </thead>
             <tbody>
-              <tr><td>12V DC CCTV camera</td><td>1</td><td>—</td></tr>
-              <tr><td>Mini DVR</td><td>1</td><td>—</td></tr>
-              <tr><td>12V battery</td><td>1</td><td>—</td></tr>
-              <tr><td>LCD monitor</td><td>1</td><td>—</td></tr>
+              <tr><td>12V DC CCTV camera</td><td>1</td><td>Analog video out over BNC</td></tr>
+              <tr><td>Mini DVR</td><td>1</td><td>Records the camera feed</td></tr>
+              <tr><td>12V battery</td><td>1</td><td>LiPo pack with XT60 connectors</td></tr>
+              <tr><td>LCD monitor</td><td>1</td><td>Used as the viewfinder</td></tr>
             </tbody>
           </table>
         </div>
@@ -82,9 +111,9 @@
           <h2>Images</h2>
           <div class="gallery" id="gallery">
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Image 1">
-              <img src="Camcorder (1).jpg" alt="CCTV Camcorder" />
-              <div class="gallery-caption">Image 1</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Bench testing the power and video wiring before mounting anything">
+              <img src="Camcorder (1).jpg" alt="CCTV camera, LCD monitor, LiPo battery, and wiring laid out on a workbench" />
+              <div class="gallery-caption">Bench testing the power and video wiring before mounting anything</div>
             </div>
 
           </div>
@@ -105,7 +134,7 @@
     <div class="container">
       <div class="footer-inner">
         <a href="../index.html" style="color: var(--text-tertiary);">← Back to all projects</a>
-        <span style="color: var(--text-tertiary);">Andrew — 2026</span>
+        <span style="color: var(--text-tertiary);">Andrew Battenberg — 2026</span>
       </div>
     </div>
   </footer>

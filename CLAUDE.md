@@ -49,6 +49,11 @@ Responsive breakpoint: `max-width: 600px` only.
 - `.preview-thumbs` — 3-up square image strip inside the landing-page "Projects" tile
 - `.gallery` — `repeat(auto-fill, minmax(220px, 1fr))`, items 4:3 ratio
 - `.gallery-portrait` — modifier for phone screenshots: 160px min columns, items 390:844 (no cropping)
+- `.gallery-contain` — modifier for plots/schematics/figures: whole image on white, no cropping
+- `.card-badge` — small pill on a project card (e.g. "ASEE paper"); `.group-label` — spacing for the
+  second `.section-label` group heading on `projects/index.html`
+- `.exp-list` / `.exp-item` / `.exp-head` / `.exp-role` / `.exp-date` / `.exp-org` / `.exp-desc` — landing-page Experience section
+- `.plain-list` — bulleted list inside a `.content-section`; `.hero-note` — one-line note under a project subtitle
 - `.project-hero`, `.project-meta`, `.meta-item`
 - `.content-section` — section block with bordered `h2`
 - `.parts-table` — styled `<table>`
@@ -136,7 +141,11 @@ Inside `<div class="projects-grid">` (paths are relative to `projects/`):
   </div>
 </a>
 ```
-Recommended thumbnail: 800×450px (16:9).
+Recommended thumbnail: 800×450px (16:9). Put the card under the right group heading
+("Hardware & engineering" or "Software & systems"). Each project page also needs a
+`<meta name="description">` and Open Graph tags (`og:title`, `og:description`, `og:url`,
+`og:image` as absolute `https://asbatty.github.io/project-portfolio/...` URLs) so links
+preview properly. Keep photos ≤2000px on the long edge (JPEG q85).
 
 The landing page (`index.html`) shows a **fixed** single "Projects" preview tile
 (`#projects` → `.preview-thumbs` with three hard-coded images linking to
@@ -148,15 +157,14 @@ preview to feature different projects.
 | Project | Gallery | PDF | Downloads | Notes |
 |---|---|---|---|---|
 | macro-pad | 6 images | placeholder only | none | Awaiting PDF writeup |
-| mohrs-circle | none | 2 PDFs (Google Docs viewer) | FinalPaper.pdf, ASEE Paper.pdf | Complete; images exist in folder but not linked |
-| cctv-camcorder | 1 image | none | none | Overview text incomplete |
+| mohrs-circle | 11 figures/photos (`.gallery-contain`) | 2 PDFs (Google Docs viewer) | FinalPaper.pdf, ASEE Paper.pdf | Complete; figures pulled from FinalPaper.pdf. The SolidWorks drawing in the report is a teammate's, so it's left out |
+| cctv-camcorder | 1 image | none | none | Text written; build still in progress, needs more photos |
 | worksout | 7 phone screenshots (portrait gallery) | none | none | Complete; screenshots use a seeded demo profile ("Alex") |
 
 ## Known TODOs
 - See `docs/portfolio-update-plan.md` for the remaining pages (Home Server, Fire TV HUD, Beach Sign).
 - `projects/macro-pad/index.html` — replace PDF placeholder section with actual writeup iframe
-- `projects/cctv-camcorder/index.html` — complete overview paragraph; add more images and CAD/PDF files when ready
-- `projects/mohrs-circle/` — `Prototype App.png`, `Prototype App 2.png`, `PrototypeReal.jpg` exist in folder but are not linked in the gallery
+- `projects/cctv-camcorder/index.html` — add build photos, CAD of the handle/screen mount, and update "Where it's at" when done
 
 
 
@@ -202,7 +210,7 @@ is the pipeline's insertion marker — do not remove.
 placeholder thumb so the grid stays even.
 
 **In-browser editing:** `assets/js/recipe-admin.js` adds an edit bar to every recipe/idea page.
-"Enable editing" stores a fine-grained GitHub PAT (repo-scoped, Contents read/write) in
+The bar only appears when a token is already saved in this browser, or when the page URL has `?edit` (how to sign in the first time). "Enable editing" stores a fine-grained GitHub PAT (repo-scoped, Contents read/write) in
 localStorage; "Add log entry" and "New version" then mutate `RECIPE_DATA` and commit the page
 file back to `Asbatty/project-portfolio` via the GitHub Contents API (regex-replaces the
 RECIPE_DATA block, PUT with sha). "Add photo" resizes the chosen image client-side via canvas
