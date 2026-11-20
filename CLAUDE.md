@@ -23,7 +23,7 @@ project-portfolio/
     │   ├── index.html
     │   └── *.jpg
     └── worksout/
-        └── index.html          — software project; screenshots pending (placeholders)
+        └── index.html + *.png  — software project; phone screenshots + thumb.jpg
 ```
 
 ## CSS (`assets/css/style.css`)
@@ -45,6 +45,7 @@ Responsive breakpoint: `max-width: 600px` only.
 - `.projects-grid` — `repeat(auto-fill, minmax(300px, 1fr))`
 - `.preview-thumbs` — 3-up square image strip inside the landing-page "Projects" tile
 - `.gallery` — `repeat(auto-fill, minmax(220px, 1fr))`, items 4:3 ratio
+- `.gallery-portrait` — modifier for phone screenshots: 160px min columns, items 390:844 (no cropping)
 - `.project-hero`, `.project-meta`, `.meta-item`
 - `.content-section` — section block with bordered `h2`
 - `.parts-table` — styled `<table>`
@@ -146,13 +147,9 @@ preview to feature different projects.
 | macro-pad | 6 images | placeholder only | none | Awaiting PDF writeup |
 | mohrs-circle | none | 2 PDFs (Google Docs viewer) | FinalPaper.pdf, ASEE Paper.pdf | Complete; images exist in folder but not linked |
 | cctv-camcorder | 1 image | none | none | Overview text incomplete |
-| worksout | 7 placeholders | none | none | Copy done; needs screenshots (demo profile) + card thumb |
+| worksout | 7 phone screenshots (portrait gallery) | none | none | Complete; screenshots use a seeded demo profile ("Alex") |
 
 ## Known TODOs
-- `projects/worksout/` — add screenshots `today.png`, `workout.png`, `rest-timer.png`, `progress.png`,
-  `history.png`, `programs.png`, `editor.png` (each placeholder has a TODO comment with the `<img>` tag)
-  and `thumb.jpg` (16:9, from the active-workout screen) for the card in `projects/index.html`.
-  Use a demo profile — no real name/bodyweight.
 - See `docs/portfolio-update-plan.md` for the remaining pages (Home Server, Fire TV HUD, Beach Sign).
 - `projects/macro-pad/index.html` — replace PDF placeholder section with actual writeup iframe
 - `projects/cctv-camcorder/index.html` — complete overview paragraph; add more images and CAD/PDF files when ready
