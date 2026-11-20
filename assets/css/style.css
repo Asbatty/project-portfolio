@@ -221,6 +221,21 @@ nav {
   color: var(--text-tertiary);
 }
 
+.card-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 9px;
+  margin-bottom: 0.5rem;
+}
+
+.group-label { margin-top: 3rem; }
+
 /* Multi-image preview strip (landing-page "Projects" tile) */
 .preview-thumbs {
   display: grid;
@@ -285,9 +300,39 @@ nav {
   .hero h1 { font-size: 1.75rem; }
   .hero-content { flex-direction: column-reverse; align-items: flex-start; }
   .hero-photo { width: 160px; height: 160px; }
-  nav { padding: 0 1rem; }
+  /* Five links don't fit beside the name on phones: put them on a second row,
+     and if even that is too narrow, scroll the row rather than the page. */
+  nav {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 0.6rem 1rem;
+    row-gap: 0.4rem;
+  }
+  .nav-links {
+    width: 100%;
+    gap: 1.1rem;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { font-size: 13px; white-space: nowrap; }
   .container { padding: 0 1rem; }
 }
+
+/* Experience / education list (landing page) */
+.exp-list { display: flex; flex-direction: column; gap: 1.75rem; max-width: 760px; }
+.exp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.exp-role { font-weight: 500; font-size: 16px; }
+.exp-date { font-size: 13px; color: var(--text-tertiary); white-space: nowrap; }
+.exp-org { font-size: 14px; color: var(--text-secondary); margin-top: 2px; }
+.exp-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.65; margin-top: 0.5rem; }
 
 .about-text {
   font-size: 15px;
@@ -459,6 +504,23 @@ footer {
 }
 
 .gallery-item:hover img { transform: scale(1.03); }
+
+/* Figures, plots and schematics: show the whole image instead of cropping */
+.gallery-contain .gallery-item img { object-fit: contain; background: #fff; }
+
+.hero-note {
+  margin-top: 0.75rem;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.plain-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.plain-list li + li { margin-top: 0.4rem; }
 
 /* Phone screenshots: tall tiles so nothing is cropped */
 .gallery-portrait { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }

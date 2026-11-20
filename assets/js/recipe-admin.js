@@ -7,7 +7,9 @@
    Token setup (one time): github.com → Settings → Developer settings →
    Fine-grained personal access tokens → Generate new token →
    Repository access: Only select repositories → project-portfolio →
-   Permissions → Contents: Read and write. Paste it into "Enable editing" below. */
+   Permissions → Contents: Read and write. Open any recipe page with ?edit on the URL
+   (e.g. recipes/peach-old-fashioned.html?edit) and paste it into "Enable editing".
+   Visitors without a saved token never see the edit bar. */
 (function () {
   const OWNER = 'Asbatty';
   const REPO = 'project-portfolio';
@@ -21,6 +23,10 @@
   const fileName = decodeURIComponent(location.pathname.split('/').pop() || '');
   if (!fileName.endsWith('.html')) return;
   const REPO_PATH = 'recipes/' + fileName;
+
+  // Only show the bar to someone signed in (token saved in this browser), or to
+  // someone who asked for it with ?edit so they can sign in the first time.
+  if (!getToken() && !/[?&]edit\b/.test(location.search)) return;
 
   const enc = new TextEncoder();
   const dec = new TextDecoder();

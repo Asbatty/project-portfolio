@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects — Andrew</title>
-  <meta name="description" content="Mechanical engineering and software projects — CAD, electronics, embedded systems, and web apps." />
+  <title>Projects — Andrew Battenberg</title>
+  <meta name="description" content="Engineering and software projects by Andrew Battenberg." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Projects — Andrew Battenberg" />
+  <meta property="og:description" content="Engineering and software projects by Andrew Battenberg." />
+  <meta property="og:url" content="https://asbatty.github.io/project-portfolio/projects/" />
+  <meta property="og:image" content="https://asbatty.github.io/project-portfolio/projects/mohrs-circle/PrototypeReal.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 <body>
 
   <nav>
-    <a class="nav-name" href="../index.html">Andrew</a>
+    <a class="nav-name" href="../index.html">Andrew Battenberg</a>
     <ul class="nav-links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="index.html">Projects</a></li>
@@ -31,32 +37,13 @@
         </div>
         <h1>Projects</h1>
         <p class="subtitle">
-          CAD, electronics, embedded systems, and software — strain-gauge instrumentation,
-          custom keyboards, machined tools, the odd repurposed enclosure, and web apps.
+          Things I've designed and built. Some are hardware, some are software, and a few are both.
         </p>
       </div>
 
       <div class="project-content">
+        <p class="section-label">Hardware &amp; engineering</p>
         <div class="projects-grid">
-
-          <a class="project-card" href="worksout/index.html">
-            <div class="card-thumb">
-              <img src="worksout/thumb.jpg" alt="WorksOut lifting tracker" />
-            </div>
-            <div class="card-body">
-              <p class="card-title">WorksOut</p>
-              <p class="card-desc">
-                An offline-first workout tracker that plans each session and suggests the next
-                weight from your history. No backend, no accounts.
-              </p>
-              <div class="card-tags">
-                <span class="tag">React</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">PWA</span>
-                <span class="tag">Offline-first</span>
-              </div>
-            </div>
-          </a>
 
           <a class="project-card" href="mohrs-circle/index.html">
             <div class="card-thumb">
@@ -64,9 +51,10 @@
             </div>
             <div class="card-body">
               <p class="card-title">Mohr's Circle Demo Tool</p>
+              <p class="card-badge">ASEE paper</p>
               <p class="card-desc">
-                Physical demo apparatus using strain gauges, a Wheatstone bridge, and an ESP32
-                to visualize stress transformation in real time via MATLAB.
+                A teaching rig for stress transformation. Strain gauges feed an ESP32, and MATLAB
+                redraws Mohr's circle as the load changes.
               </p>
               <div class="card-tags">
                 <span class="tag">ESP32</span>
@@ -84,12 +72,12 @@
             <div class="card-body">
               <p class="card-title">Macro Pad with Display</p>
               <p class="card-desc">
-                Custom mechanical macro pad with an integrated display, hand-wired and
-                programmed with QMK firmware.
+                A wireless macro pad with a small OLED screen. I hand-wired it, wrote the code for the
+                ESP32, and use it to speed up CAD work.
               </p>
               <div class="card-tags">
-                <span class="tag">PCB design</span>
-                <span class="tag">QMK</span>
+                <span class="tag">ESP32</span>
+                <span class="tag">Arduino</span>
                 <span class="tag">CAD</span>
                 <span class="tag">Fabrication</span>
               </div>
@@ -103,13 +91,58 @@
             <div class="card-body">
               <p class="card-title">CCTV Camcorder</p>
               <p class="card-desc">
-                Repurposed CCTV camera housing into a functional handheld camcorder — custom
-                machined parts, lens assembly, and internal electronics integration.
+                A CCTV security camera turned into a handheld camcorder, with a handle and screen mount
+                I designed.
               </p>
               <div class="card-tags">
                 <span class="tag">CAD</span>
                 <span class="tag">Machining</span>
                 <span class="tag">Electronics</span>
+              </div>
+            </div>
+          </a>
+
+
+          <a class="project-card" href="led-matrix/index.html">
+            <div class="card-thumb">
+              <div class="card-thumb-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="16" cy="8" r="1"/><circle cx="8" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="16" cy="12" r="1"/><circle cx="8" cy="16" r="1"/><circle cx="12" cy="16" r="1"/><circle cx="16" cy="16" r="1"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-title">LED Matrix</p>
+              <p class="card-badge">In progress</p>
+              <p class="card-desc">
+                <!-- LED-MATRIX: card -->
+                A 64×32 RGB LED panel driven by an ESP32, in a 3D printed frame I'm designing.
+              </p>
+              <div class="card-tags">
+                <span class="tag">ESP32</span>
+                <span class="tag">3D printing</span>
+                <span class="tag">RGB LED</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <p class="section-label group-label">Software &amp; systems</p>
+        <div class="projects-grid">
+
+          <a class="project-card" href="worksout/index.html">
+            <div class="card-thumb">
+              <img src="worksout/thumb.jpg" alt="WorksOut lifting tracker" />
+            </div>
+            <div class="card-body">
+              <p class="card-title">WorksOut</p>
+              <p class="card-desc">
+                A workout tracker for my phone. It plans each session and suggests the next weight
+                based on what I lifted last time. All the data stays on the device.
+              </p>
+              <div class="card-tags">
+                <span class="tag">React</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">PWA</span>
+                <span class="tag">Offline-first</span>
               </div>
             </div>
           </a>
@@ -123,7 +156,7 @@
     <div class="container">
       <div class="footer-inner">
         <a href="../index.html" style="color: var(--text-tertiary);">← Back to portfolio</a>
-        <span style="color: var(--text-tertiary);">Andrew — 2026</span>
+        <span style="color: var(--text-tertiary);">Andrew Battenberg — 2026</span>
       </div>
     </div>
   </footer>

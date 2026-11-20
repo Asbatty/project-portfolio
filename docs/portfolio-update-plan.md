@@ -96,6 +96,11 @@ Each one follows the CLAUDE.md "Adding a New Project" steps: `projects/<slug>/in
 - **Assets needed:** photos of the sign, the electronics and any schematics or reports. Andrew
   is looking for them.
 
+## 2e. Recruiter-readiness pass (Nov 20) — done
+Projects grouped (hardware first, Mohr's leads with an ASEE badge), Experience section, phone number
+removed, full name everywhere, link previews, images resized, Recipe Box edit bar hidden from visitors,
+Mohr's page rebuilt around my role and results, CCTV page written.
+
 ## 3. Existing TODOs (from CLAUDE.md)
 - `macro-pad`: replace the PDF placeholder with the real write-up.
 - `cctv-camcorder`: finish the overview, and add images and CAD files.
