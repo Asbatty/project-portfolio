@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mohr's Circle Demo Tool — Andrew Battenberg</title>
-  <meta name="description" content="Senior design project: an aluminum tube with strain gauges, an HX711 and an ESP32 feeding a MATLAB app that redraws Mohr&#x27;s circle live. Written up as an ASEE paper." />
+  <meta name="description" content="In this senior design project, an aluminum tube with strain gauges, an HX711, and an ESP32 feed a MATLAB app that redraws Mohr&#x27;s circle live. The team wrote it up as an ASEE paper." />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Mohr&#x27;s Circle Demo Tool — Andrew Battenberg" />
-  <meta property="og:description" content="Senior design project: an aluminum tube with strain gauges, an HX711 and an ESP32 feeding a MATLAB app that redraws Mohr&#x27;s circle live. Written up as an ASEE paper." />
+  <meta property="og:description" content="In this senior design project, an aluminum tube with strain gauges, an HX711, and an ESP32 feed a MATLAB app that redraws Mohr&#x27;s circle live. The team wrote it up as an ASEE paper." />
   <meta property="og:url" content="https://asbatty.github.io/project-portfolio/projects/mohrs-circle/" />
   <meta property="og:image" content="https://asbatty.github.io/project-portfolio/projects/mohrs-circle/PrototypeReal.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -38,11 +38,11 @@
         </div>
         <h1>Mohr's Circle Demo Tool</h1>
         <p class="subtitle">
-          A teaching tool for stress transformation. An aluminum tube fitted with strain gauges
+          This is a teaching tool for stress transformation. An aluminum tube fitted with strain gauges
           feeds an HX711 and an ESP32, and a MATLAB app redraws Mohr's circle as the load changes.
         </p>
         <p class="hero-note">
-          Written up as an ASEE work-in-progress paper. Both papers are at the bottom of this page.
+          We wrote this phase up as an ASEE work-in-progress paper. Both papers are at the bottom of this page.
         </p>
         <div class="project-meta">
           <div class="meta-item">
@@ -76,9 +76,8 @@
           </p>
           <p>
             Two earlier teams designed the MATLAB app and the handheld tool but never got the
-            electronics working. Our job was to turn that into a real, instrumented prototype. The
-            test piece is a 1.5 in, 6061 aluminum tube, which we switched to from the nylon the
-            earlier teams planned on because gauges bond to it much more reliably. Two triaxial
+            electronics working. Our job was to turn that into a real, instrumented prototype. The test piece is a 6061 aluminum tube with a 1.5 in outer diameter. We switched to it from
+            the nylon the earlier teams planned on because gauges bond to aluminum much more reliably. Two triaxial
             rosettes pick up axial and torsional strain, and two uniaxial gauges at midspan pick up
             bending. For the calculations we treated the tube as a cantilever beam. The ESP32 zeroes
             the readings, filters them, and sends stress values over serial to the MATLAB app, which
@@ -89,11 +88,11 @@
         <div class="content-section">
           <h2>My part</h2>
           <ul class="plain-list">
-            <li>Prepped the tube and installed the strain gauges, after practicing on scrap aluminum with the lab's instrumentation specialist</li>
-            <li>Soldered the gauges, bridges, and electronics together and did the wiring</li>
-            <li>Drew the wiring schematics, and redrew the board schematic in KiCad after I found GPIO pin conflicts in the original design</li>
-            <li>Debugged the signal chain. The first version used an AD627 amplifier into the ESP32's 12-bit ADC and kept drifting and losing bridge balance, so we moved to an HX711 24-bit ADC</li>
-            <li>Ran the calibration and noise tests</li>
+            <li>I prepped the tube and installed the strain gauges after practicing on scrap aluminum with the lab's instrumentation specialist.</li>
+            <li>I soldered the gauges, bridges, and electronics together and did the wiring.</li>
+            <li>I drew the wiring schematics and redrew the board schematic in KiCad after I found GPIO pin conflicts in the original design.</li>
+            <li>I debugged the signal chain. The first version used an AD627 amplifier feeding the ESP32's 12-bit ADC, and it kept drifting and losing bridge balance, so we moved to an HX711 24-bit ADC.</li>
+            <li>I ran the calibration and noise tests.</li>
           </ul>
         </div>
 
@@ -114,9 +113,9 @@
             traced mostly to imperfect wire connections.
           </p>
           <p>
-            Still to do: torsion testing (the scaled-up tube didn't fit the lab's torsion machine),
-            shrinking the electronics into the handheld housing, and the classroom study to see if
-            it actually helps students.
+            Three things are still left to do: torsion testing (the scaled-up tube didn't fit the lab's
+            torsion machine), shrinking the electronics into the handheld housing, and a classroom study
+            to see whether it actually helps students.
           </p>
         </div>
 
@@ -124,59 +123,59 @@
           <h2>Images</h2>
           <div class="gallery gallery-contain" id="gallery">
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The instrumented aluminum tube with the bridge wiring run out to the electronics">
-              <img src="PrototypeReal.jpg" alt="The instrumented aluminum tube with the bridge wiring run out to the electronics" />
-              <div class="gallery-caption">The instrumented aluminum tube with the bridge wiring run out to the electronics</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The instrumented aluminum tube has its bridge wiring run out to the electronics.">
+              <img src="PrototypeReal.jpg" alt="The instrumented aluminum tube has its bridge wiring run out to the electronics." />
+              <div class="gallery-caption">The instrumented aluminum tube has its bridge wiring run out to the electronics.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Strain gauges bonded to the tube: a rosette for axial and torsion, a uniaxial gauge for bending">
-              <img src="gauges-on-tube.jpg" alt="Strain gauges bonded to the tube: a rosette for axial and torsion, a uniaxial gauge for bending" />
-              <div class="gallery-caption">Strain gauges bonded to the tube: a rosette for axial and torsion, a uniaxial gauge for bending</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Strain gauges are bonded to the tube: a rosette for axial and torsion, and a uniaxial gauge for bending.">
+              <img src="gauges-on-tube.jpg" alt="Strain gauges are bonded to the tube: a rosette for axial and torsion, and a uniaxial gauge for bending." />
+              <div class="gallery-caption">Strain gauges are bonded to the tube: a rosette for axial and torsion, and a uniaxial gauge for bending.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Gauge layout around the tube: rosettes at 0° and 180°, bending gauges at 90° and 270°">
-              <img src="gauge-layout.png" alt="Gauge layout around the tube: rosettes at 0° and 180°, bending gauges at 90° and 270°" />
-              <div class="gallery-caption">Gauge layout around the tube: rosettes at 0° and 180°, bending gauges at 90° and 270°</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The rosettes sit at 0° and 180° around the tube, and the bending gauges sit at 90° and 270°.">
+              <img src="gauge-layout.png" alt="The rosettes sit at 0° and 180° around the tube, and the bending gauges sit at 90° and 270°." />
+              <div class="gallery-caption">The rosettes sit at 0° and 180° around the tube, and the bending gauges sit at 90° and 270°.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Wiring schematic for the bending half-bridge into the HX711">
-              <img src="bending-bridge-schematic.png" alt="Wiring schematic for the bending half-bridge into the HX711" />
-              <div class="gallery-caption">Wiring schematic for the bending half-bridge into the HX711</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="This wiring schematic shows the bending half-bridge going into the HX711.">
+              <img src="bending-bridge-schematic.png" alt="This wiring schematic shows the bending half-bridge going into the HX711." />
+              <div class="gallery-caption">This wiring schematic shows the bending half-bridge going into the HX711.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Breadboarded HX711 and ESP32 during bring-up and debugging">
-              <img src="breadboard-hx711.jpg" alt="Breadboarded HX711 and ESP32 during bring-up and debugging" />
-              <div class="gallery-caption">Breadboarded HX711 and ESP32 during bring-up and debugging</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="I breadboarded the HX711 and ESP32 for bring-up and debugging.">
+              <img src="breadboard-hx711.jpg" alt="I breadboarded the HX711 and ESP32 for bring-up and debugging." />
+              <div class="gallery-caption">I breadboarded the HX711 and ESP32 for bring-up and debugging.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="FEA of the tube under 10 lbf cantilever bending, used to confirm the strain would be measurable">
-              <img src="fea-bending.png" alt="FEA of the tube under 10 lbf cantilever bending, used to confirm the strain would be measurable" />
-              <div class="gallery-caption">FEA of the tube under 10 lbf cantilever bending, used to confirm the strain would be measurable</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="FEA of the tube under 10 lbf of cantilever bending confirmed the strain would be measurable.">
+              <img src="fea-bending.png" alt="FEA of the tube under 10 lbf of cantilever bending confirmed the strain would be measurable." />
+              <div class="gallery-caption">FEA of the tube under 10 lbf of cantilever bending confirmed the strain would be measurable.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Axial calibration, 0 to 80 lbf in 8 lbf steps (R² = 0.9993)">
-              <img src="calibration-axial.png" alt="Axial calibration, 0 to 80 lbf in 8 lbf steps (R² = 0.9993)" />
-              <div class="gallery-caption">Axial calibration, 0 to 80 lbf in 8 lbf steps (R² = 0.9993)</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Axial calibration ran from 0 to 80 lbf in 8 lbf steps (R² = 0.9993).">
+              <img src="calibration-axial.png" alt="Axial calibration ran from 0 to 80 lbf in 8 lbf steps (R² = 0.9993)." />
+              <div class="gallery-caption">Axial calibration ran from 0 to 80 lbf in 8 lbf steps (R² = 0.9993).</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Cantilever bending calibration, 0 to 10.13 lbf (R² = 0.9999)">
-              <img src="calibration-bending.png" alt="Cantilever bending calibration, 0 to 10.13 lbf (R² = 0.9999)" />
-              <div class="gallery-caption">Cantilever bending calibration, 0 to 10.13 lbf (R² = 0.9999)</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Cantilever bending calibration ran from 0 to 10.13 lbf (R² = 0.9999).">
+              <img src="calibration-bending.png" alt="Cantilever bending calibration ran from 0 to 10.13 lbf (R² = 0.9999)." />
+              <div class="gallery-caption">Cantilever bending calibration ran from 0 to 10.13 lbf (R² = 0.9999).</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Zero-load noise: raw signal vs. a 20-sample moving average">
-              <img src="noise-filter.png" alt="Zero-load noise: raw signal vs. a 20-sample moving average" />
-              <div class="gallery-caption">Zero-load noise: raw signal vs. a 20-sample moving average</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="This plot compares the raw zero-load signal with a 20-sample moving average.">
+              <img src="noise-filter.png" alt="This plot compares the raw zero-load signal with a 20-sample moving average." />
+              <div class="gallery-caption">This plot compares the raw zero-load signal with a 20-sample moving average.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="MATLAB app: 2D stress transformation and Mohr's circle">
-              <img src="Prototype App.png" alt="MATLAB app: 2D stress transformation and Mohr's circle" />
-              <div class="gallery-caption">MATLAB app: 2D stress transformation and Mohr's circle</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The MATLAB app shows the 2D stress transformation and Mohr's circle.">
+              <img src="Prototype App.png" alt="The MATLAB app shows the 2D stress transformation and Mohr's circle." />
+              <div class="gallery-caption">The MATLAB app shows the 2D stress transformation and Mohr's circle.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="MATLAB app: 3D stress state and the three Mohr's circles">
-              <img src="Prototype App 2.png" alt="MATLAB app: 3D stress state and the three Mohr's circles" />
-              <div class="gallery-caption">MATLAB app: 3D stress state and the three Mohr's circles</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The MATLAB app's 3D view shows the stress state and all three Mohr's circles.">
+              <img src="Prototype App 2.png" alt="The MATLAB app's 3D view shows the stress state and all three Mohr's circles." />
+              <div class="gallery-caption">The MATLAB app's 3D view shows the stress state and all three Mohr's circles.</div>
             </div>
 
           </div>
