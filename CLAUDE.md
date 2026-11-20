@@ -237,5 +237,7 @@ Recipe CSS lives in `assets/css/style.css` under `/* ---- Recipe Box ---- */`.
 
 Entry points on the landing page: "Recipe Box" nav link + card in the `#recipes` section.
 
-Current contents: 19 recipes + 4 idea pages transcribed from 12 notebook photos
-(cocktails, syrups, spherification technique, and a few food recipes).
+Current contents: 54 recipes + 20 idea pages transcribed from 31 notebook photos
+(`originals/notebook-01.jpg` … `notebook-31.jpg`): cocktails, syrups, tinctures, spherification
+technique, and a few food recipes. Pages 13–31 were bot-transcribed, then re-read by hand and split
+into one page per recipe/idea; uncertain readings are marked "(?)".
