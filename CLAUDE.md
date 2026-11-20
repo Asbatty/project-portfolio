@@ -1,5 +1,8 @@
 # CLAUDE.md — Portfolio
 
+## Workflow
+Every change goes through a pull request into `main`. Never push straight to `main`; open a PR for each update (Andrew merges).
+
 ## Stack
 Plain HTML5 / CSS3 / vanilla JS. No build step, no framework, no dependencies. Files are served directly (e.g. GitHub Pages).
 
