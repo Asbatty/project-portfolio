@@ -38,8 +38,8 @@
         </div>
         <h1>Mohr's Circle Demo Tool</h1>
         <p class="subtitle">
-          This is a teaching tool for stress transformation. An aluminum tube fitted with strain gauges
-          feeds an HX711 and an ESP32, and a MATLAB app redraws Mohr's circle as the load changes.
+          Our senior design team built a teaching tool for stress transformation. Strain gauges on an aluminum tube feed an
+          HX711 and an ESP32, and a MATLAB app redraws Mohr's circle as the load changes.
         </p>
         <p class="hero-note">
           We wrote this phase up as an ASEE work-in-progress paper. Both papers are at the bottom of this page.
@@ -87,13 +87,18 @@
 
         <div class="content-section">
           <h2>My part</h2>
-          <ul class="plain-list">
-            <li>I prepped the tube and installed the strain gauges after practicing on scrap aluminum with the lab's instrumentation specialist.</li>
-            <li>I soldered the gauges, bridges, and electronics together and did the wiring.</li>
-            <li>I drew the wiring schematics and redrew the board schematic in KiCad after I found GPIO pin conflicts in the original design.</li>
-            <li>I debugged the signal chain. The first version used an AD627 amplifier feeding the ESP32's 12-bit ADC, and it kept drifting and losing bridge balance, so we moved to an HX711 24-bit ADC.</li>
-            <li>I ran the calibration and noise tests.</li>
-          </ul>
+          <p>
+            The hands-on instrumentation was my part. I practiced bonding strain gauges on scrap
+            aluminum with the lab's instrumentation specialist before touching the real tube, then
+            installed and soldered the gauges, built the bridges, and wired everything up. I drew the
+            wiring schematics and redrew the board in KiCad after finding GPIO pin conflicts in the
+            original design.
+          </p>
+          <p>
+            The signal chain took the most debugging. Our first version ran an AD627 amplifier into
+            the ESP32's 12-bit ADC, and it kept drifting and losing bridge balance, so we switched to
+            an HX711 24-bit ADC. I also ran the calibration and noise tests below.
+          </p>
         </div>
 
         <div class="content-section">

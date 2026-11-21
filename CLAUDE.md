@@ -3,6 +3,13 @@
 ## Workflow
 Every change goes through a pull request into `main`. Never push straight to `main`; open a PR for each update (Andrew merges).
 
+## Writing voice
+Site copy is Andrew's first-person voice: plain, specific, a little dry. Use complete sentences, but vary
+how they start and how long they run. Avoid the usual AI tells: "This is…"/"These are…" openers on every
+card, rule-of-three lists everywhere, "not X but Y", tidy summary closers, clever headings, bold-label
+bullets, em-dash asides, and words like delve/leverage/seamless/robust/crucial. Prefer numbers, real
+failures and what changed over feature lists. Never invent opinions or habits he hasn't stated.
+
 ## Stack
 Plain HTML5 / CSS3 / vanilla JS. No build step, no framework, no dependencies. Files are served directly (e.g. GitHub Pages).
 
@@ -60,7 +67,7 @@ Responsive breakpoint: `max-width: 600px` only.
 - `.card-badge` — small pill on a project card (e.g. "ASEE paper"); `.group-label` — spacing for the
   second `.section-label` group heading on `projects/index.html`
 - `.exp-list` / `.exp-item` / `.exp-head` / `.exp-role` / `.exp-date` / `.exp-org` / `.exp-desc` — landing-page Experience section
-- `.plain-list` — bulleted list inside a `.content-section`; `.hero-note` — one-line note under a project subtitle
+- `.plain-list` — bulleted list inside a `.content-section` (currently unused; prefer prose); `.hero-note` — one-line note under a project subtitle
 - `.project-hero`, `.project-meta`, `.meta-item`
 - `.content-section` — section block with bordered `h2`
 - `.parts-table` — styled `<table>`
