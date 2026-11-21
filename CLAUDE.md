@@ -29,8 +29,10 @@ project-portfolio/
     │   └── index.html + *.png  — software project; phone screenshots + thumb.jpg
     ├── led-matrix/
     │   └── index.html          — in-progress placeholder (no images yet)
-    └── fire-tv-hud/
-        └── index.html + hud-*.jpg, thumb.jpg — Kotlin Fire TV launcher (software group)
+    ├── fire-tv-hud/
+    │   └── index.html + hud-*.jpg, thumb.jpg — Kotlin Fire TV launcher (software group)
+    └── home-server/
+        └── index.html + ha-*.png, thumb.jpg — Home Assistant on a Mac mini (software group)
 ```
 
 ## CSS (`assets/css/style.css`)
@@ -166,11 +168,11 @@ preview to feature different projects.
 | cctv-camcorder | 1 image | none | none | Text written; build still in progress, needs more photos |
 | worksout | 7 phone screenshots (portrait gallery) | none | none | Complete; screenshots use a seeded demo profile ("Alex") |
 | fire-tv-hud | 5 TV screenshots (`.gallery-wide`) | none | none | Complete. Viewing-history captions on the Continue row are blurred. Source repo stays private (no link) |
+| home-server | 3 tablet (`.gallery-wide .gallery-contain`) + 2 phone (`.gallery-portrait .gallery-contain`) | none | none | Complete. Presence, avatar, camera, masthead and news headlines are blurred in the screenshots |
 | led-matrix | placeholder | none | none | In progress: 64×32 RGB panel (4 mm pitch), ESP32, 3D printed frame. Needs photos, purpose, frame CAD |
 
 ## Known TODOs
-- See `docs/portfolio-update-plan.md` for the remaining pages (Home Server, Beach Sign). Home Server is waiting on
-  Home Assistant dashboard screenshots (raw files go on the `screenshots/home-server-firetv` branch).
+- See `docs/portfolio-update-plan.md` for the remaining page (Beach Sign, waiting on photos and the new resume).
 - `projects/macro-pad/index.html` — replace PDF placeholder section with actual writeup iframe
 - `projects/cctv-camcorder/index.html` — add build photos, CAD of the handle/screen mount, and update "Where it's at" when done
 
