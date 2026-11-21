@@ -38,8 +38,8 @@
         </div>
         <h1>Fire TV HUD</h1>
         <p class="subtitle">
-          I stripped the ads and tracking out of my Fire TV and replaced Amazon's home screen with my
-          own launcher, which also controls the lights and shows alerts from my Home Assistant server.
+          I ripped the ads and tracking out of my Fire TV and replaced Amazon's home screen with my own
+          launcher. It runs my lights now too.
         </p>
         <div class="project-meta">
           <div class="meta-item">
@@ -62,18 +62,18 @@
         <div class="content-section">
           <h2>Overview</h2>
           <p>
-            My Fire TV Stick had turned into a billboard. The home screen was full of sponsored
-            banners, the screensaver ran ads, and a dozen Amazon services were reporting what I
-            watched. I wanted it clean, and I wanted the TV to be useful when nothing was playing.
-            The result is a custom home screen that I call the HUD.
+            Amazon's home screen on my Fire TV Stick was mostly ads. Sponsored banners took up the top
+            row, the screensaver ran more of them, and a pile of Amazon services sent back what I
+            watched. I wanted the ads gone. The TV also sits dark most of the day, so I wanted it to
+            be good for something when nothing's playing. That turned into the HUD.
           </p>
         </div>
 
         <div class="content-section">
           <h2>Cleaning up Fire OS</h2>
           <p>
-            Working over Wi-Fi ADB, I uninstalled the apps I never used and disabled dozens of
-            Amazon ad, tracking, and promo packages. Fire OS won't let you disable a few of its
+            Working over Wi-Fi ADB, I uninstalled the apps I never used and disabled about 70 Amazon ad, tracking, and promo
+            packages. Fire OS won't let you disable a few of its
             telemetry services, so I blocked their servers at the DNS level with AdGuard Home. After
             each change, I checked that every streaming app still played.
           </p>
@@ -88,17 +88,16 @@
             a grid with a glow in each app's brand color, a Continue row, and rotating wallpapers.
           </p>
           <p>
-            The side panels pull live data from my Home Assistant server. From the couch, I can dim
-            or brighten each lamp, switch the whole room to a mode like Movie or Night, check on the
-            house, and turn the TV off or set a sleep timer. Home Assistant alerts pop up in the
-            corner without stopping whatever is playing.
+            The side panels pull live data from my Home Assistant server. From the couch I can dim a lamp,
+            put the room in Movie mode, or set a sleep timer, and alerts pop up in the corner without
+            pausing the show.
           </p>
         </div>
 
         <div class="content-section">
-          <h2>Working within the hardware</h2>
+          <h2>The 2 GB problem</h2>
           <p>
-            The stick only has 2 GB of RAM, and after a couple of weeks of uptime, videos started
+            The stick only has 2 GB of RAM. After a couple of weeks without a restart, videos started
             freezing. I made the HUD's image decoding lighter and added Home Assistant automations
             that close background apps when the TV sleeps and restart it overnight. My Samsung TV
             also ignores the Fire TV's power signals, so a single "TV off" action now uses
@@ -106,8 +105,8 @@
             or the wall tablet.
           </p>
           <p>
-            The HUD works hand in hand with my <a href="../home-server/index.html">Home Server</a>,
-            which runs the automations and supplies everything the panels show.
+            All of the lamp and alert data comes from my <a href="../home-server/index.html">Home
+            Server</a>.
           </p>
         </div>
 
@@ -115,29 +114,29 @@
           <h2>Screenshots</h2>
           <div class="gallery gallery-wide" id="gallery">
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The home screen shows my apps in a grid with a glow in each app's color and a Continue row on top.">
-              <img src="hud-home.jpg" alt="The home screen shows my apps in a grid with a glow in each app's color and a Continue row on top." />
-              <div class="gallery-caption">The home screen shows my apps in a grid with a glow in each app's color and a Continue row on top.</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Each app glows in its own brand color when it's selected.">
+              <img src="hud-home.jpg" alt="Each app glows in its own brand color when it's selected." />
+              <div class="gallery-caption">Each app glows in its own brand color when it's selected.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The Lamps panel shows each lamp's brightness and color temperature, with controls right below it.">
-              <img src="hud-lamps.jpg" alt="The Lamps panel shows each lamp's brightness and color temperature, with controls right below it." />
-              <div class="gallery-caption">The Lamps panel shows each lamp's brightness and color temperature, with controls right below it.</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Every lamp gets a card with its brightness and color temperature.">
+              <img src="hud-lamps.jpg" alt="Every lamp gets a card with its brightness and color temperature." />
+              <div class="gallery-caption">Every lamp gets a card with its brightness and color temperature.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The Modes panel sets the whole room at once, from Movie to Deep Red.">
-              <img src="hud-modes.jpg" alt="The Modes panel sets the whole room at once, from Movie to Deep Red." />
-              <div class="gallery-caption">The Modes panel sets the whole room at once, from Movie to Deep Red.</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Modes set the whole room in one press. Deep Red is for late nights.">
+              <img src="hud-modes.jpg" alt="Modes set the whole room in one press. Deep Red is for late nights." />
+              <div class="gallery-caption">Modes set the whole room in one press. Deep Red is for late nights.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Home Assistant alerts pop up in the corner without interrupting what's playing.">
-              <img src="hud-toast.jpg" alt="Home Assistant alerts pop up in the corner without interrupting what's playing." />
-              <div class="gallery-caption">Home Assistant alerts pop up in the corner without interrupting what's playing.</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="This one is a test alert. Real ones pop up over whatever's playing.">
+              <img src="hud-toast.jpg" alt="This one is a test alert. Real ones pop up over whatever's playing." />
+              <div class="gallery-caption">This one is a test alert. Real ones pop up over whatever's playing.</div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The TV panel turns off both the Samsung and the Fire TV and has a sleep timer.">
-              <img src="hud-tv.jpg" alt="The TV panel turns off both the Samsung and the Fire TV and has a sleep timer." />
-              <div class="gallery-caption">The TV panel turns off both the Samsung and the Fire TV and has a sleep timer.</div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="One button turns off both the Samsung and the Fire TV.">
+              <img src="hud-tv.jpg" alt="One button turns off both the Samsung and the Fire TV." />
+              <div class="gallery-caption">One button turns off both the Samsung and the Fire TV.</div>
             </div>
 
           </div>
