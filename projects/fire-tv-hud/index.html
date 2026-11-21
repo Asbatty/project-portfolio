@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire TV HUD — Andrew Battenberg</title>
+  <meta name="description" content="Andrew Battenberg built a custom Kotlin home screen for his Fire TV that strips out Amazon's ads and turns the TV into a Home Assistant control panel." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fire TV HUD — Andrew Battenberg" />
+  <meta property="og:description" content="Andrew Battenberg built a custom Kotlin home screen for his Fire TV that strips out Amazon's ads and turns the TV into a Home Assistant control panel." />
+  <meta property="og:url" content="https://asbatty.github.io/project-portfolio/projects/fire-tv-hud/" />
+  <meta property="og:image" content="https://asbatty.github.io/project-portfolio/projects/fire-tv-hud/thumb.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="../../index.html">Andrew Battenberg</a>
+    <ul class="nav-links">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../index.html">Projects</a></li>
+      <li><a href="../../index.html#about">About</a></li>
+      <li><a href="../../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <div class="project-hero">
+        <div class="breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span>/</span>
+          <a href="../index.html">Projects</a>
+          <span>/</span>
+          <span>Fire TV HUD</span>
+        </div>
+        <h1>Fire TV HUD</h1>
+        <p class="subtitle">
+          I stripped the ads and tracking out of my Fire TV and replaced Amazon's home screen with my
+          own launcher, which also controls the lights and shows alerts from my Home Assistant server.
+        </p>
+        <div class="project-meta">
+          <div class="meta-item">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">Personal project</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Date</span>
+            <span class="meta-value">Oct – Nov 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">Solo design &amp; development</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-content">
+
+        <div class="content-section">
+          <h2>Overview</h2>
+          <p>
+            My Fire TV Stick had turned into a billboard. The home screen was full of sponsored
+            banners, the screensaver ran ads, and a dozen Amazon services were reporting what I
+            watched. I wanted it clean, and I wanted the TV to be useful when nothing was playing.
+            The result is a custom home screen that I call the HUD.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Cleaning up Fire OS</h2>
+          <p>
+            Working over Wi-Fi ADB, I uninstalled the apps I never used and disabled dozens of
+            Amazon ad, tracking, and promo packages. Fire OS won't let you disable a few of its
+            telemetry services, so I blocked their servers at the DNS level with AdGuard Home. After
+            each change, I checked that every streaming app still played.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>The HUD</h2>
+          <p>
+            The HUD is an Android app written in Kotlin with Jetpack Compose and built into a signed
+            release APK. Fire OS ignores third-party launchers, so the HUD uses an accessibility
+            service to catch the Home button and bring itself back to the front. It shows my apps in
+            a grid with a glow in each app's brand color, a Continue row, and rotating wallpapers.
+          </p>
+          <p>
+            The side panels pull live data from my Home Assistant server. From the couch, I can dim
+            or brighten each lamp, switch the whole room to a mode like Movie or Night, check on the
+            house, and turn the TV off or set a sleep timer. Home Assistant alerts pop up in the
+            corner without stopping whatever is playing.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Working within the hardware</h2>
+          <p>
+            The stick only has 2 GB of RAM, and after a couple of weeks of uptime, videos started
+            freezing. I made the HUD's image decoding lighter and added Home Assistant automations
+            that close background apps when the TV sleeps and restart it overnight. My Samsung TV
+            also ignores the Fire TV's power signals, so a single "TV off" action now uses
+            Wake-on-LAN and ADB to switch both off together, whether I press it on the HUD, my phone,
+            or the wall tablet.
+          </p>
+          <p>
+            The HUD works hand in hand with my Home Assistant server, which runs the automations and
+            supplies everything the panels show.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Screenshots</h2>
+          <div class="gallery gallery-wide" id="gallery">
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The home screen shows my apps in a grid with a glow in each app's color and a Continue row on top.">
+              <img src="hud-home.jpg" alt="The home screen shows my apps in a grid with a glow in each app's color and a Continue row on top." />
+              <div class="gallery-caption">The home screen shows my apps in a grid with a glow in each app's color and a Continue row on top.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The Lamps panel shows each lamp's brightness and color temperature, with controls right below it.">
+              <img src="hud-lamps.jpg" alt="The Lamps panel shows each lamp's brightness and color temperature, with controls right below it." />
+              <div class="gallery-caption">The Lamps panel shows each lamp's brightness and color temperature, with controls right below it.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The Modes panel sets the whole room at once, from Movie to Deep Red.">
+              <img src="hud-modes.jpg" alt="The Modes panel sets the whole room at once, from Movie to Deep Red." />
+              <div class="gallery-caption">The Modes panel sets the whole room at once, from Movie to Deep Red.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Home Assistant alerts pop up in the corner without interrupting what's playing.">
+              <img src="hud-toast.jpg" alt="Home Assistant alerts pop up in the corner without interrupting what's playing." />
+              <div class="gallery-caption">Home Assistant alerts pop up in the corner without interrupting what's playing.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The TV panel turns off both the Samsung and the Fire TV and has a sleep timer.">
+              <img src="hud-tv.jpg" alt="The TV panel turns off both the Samsung and the Fire TV and has a sleep timer." />
+              <div class="gallery-caption">The TV panel turns off both the Samsung and the Fire TV and has a sleep timer.</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" style="color: var(--text-tertiary);">← Back to all projects</a>
+        <span style="color: var(--text-tertiary);">Andrew Battenberg — 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      if (!img) return;
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = el.dataset.caption || '';
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>

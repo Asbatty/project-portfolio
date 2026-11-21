@@ -27,8 +27,10 @@ project-portfolio/
     │   └── *.jpg
     ├── worksout/
     │   └── index.html + *.png  — software project; phone screenshots + thumb.jpg
-    └── led-matrix/
-        └── index.html          — in-progress placeholder (no images yet)
+    ├── led-matrix/
+    │   └── index.html          — in-progress placeholder (no images yet)
+    └── fire-tv-hud/
+        └── index.html + hud-*.jpg, thumb.jpg — Kotlin Fire TV launcher (software group)
 ```
 
 ## CSS (`assets/css/style.css`)
@@ -50,6 +52,7 @@ Responsive breakpoint: `max-width: 600px` only.
 - `.projects-grid` — `repeat(auto-fill, minmax(300px, 1fr))`
 - `.preview-thumbs` — 3-up square image strip inside the landing-page "Projects" tile
 - `.gallery` — `repeat(auto-fill, minmax(220px, 1fr))`, items 4:3 ratio
+- `.gallery-wide` — modifier for TV/desktop screenshots: 300px min columns, items 16:9 (no cropping)
 - `.gallery-portrait` — modifier for phone screenshots: 160px min columns, items 390:844 (no cropping)
 - `.gallery-contain` — modifier for plots/schematics/figures: whole image on white, no cropping
 - `.card-badge` — small pill on a project card (e.g. "ASEE paper"); `.group-label` — spacing for the
@@ -162,10 +165,12 @@ preview to feature different projects.
 | mohrs-circle | 11 figures/photos (`.gallery-contain`) | 2 PDFs (Google Docs viewer) | FinalPaper.pdf, ASEE Paper.pdf | Complete; figures pulled from FinalPaper.pdf. The SolidWorks drawing in the report is a teammate's, so it's left out |
 | cctv-camcorder | 1 image | none | none | Text written; build still in progress, needs more photos |
 | worksout | 7 phone screenshots (portrait gallery) | none | none | Complete; screenshots use a seeded demo profile ("Alex") |
+| fire-tv-hud | 5 TV screenshots (`.gallery-wide`) | none | none | Complete. Viewing-history captions on the Continue row are blurred. Source repo stays private (no link) |
 | led-matrix | placeholder | none | none | In progress: 64×32 RGB panel (4 mm pitch), ESP32, 3D printed frame. Needs photos, purpose, frame CAD |
 
 ## Known TODOs
-- See `docs/portfolio-update-plan.md` for the remaining pages (Home Server, Fire TV HUD, Beach Sign).
+- See `docs/portfolio-update-plan.md` for the remaining pages (Home Server, Beach Sign). Home Server is waiting on
+  Home Assistant dashboard screenshots (raw files go on the `screenshots/home-server-firetv` branch).
 - `projects/macro-pad/index.html` — replace PDF placeholder section with actual writeup iframe
 - `projects/cctv-camcorder/index.html` — add build photos, CAD of the handle/screen mount, and update "Where it's at" when done
 
