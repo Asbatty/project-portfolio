@@ -522,6 +522,10 @@ footer {
 }
 .plain-list li + li { margin-top: 0.4rem; }
 
+/* TV / desktop screenshots: 16:9 tiles so nothing is cropped */
+.gallery-wide { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.gallery-wide .gallery-item { aspect-ratio: 16 / 9; }
+
 /* Phone screenshots: tall tiles so nothing is cropped */
 .gallery-portrait { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
 .gallery-portrait .gallery-item { aspect-ratio: 390 / 844; }

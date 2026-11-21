@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Server — Andrew Battenberg</title>
+  <meta name="description" content="Andrew Battenberg runs Home Assistant on a Mac mini, with custom tablet, phone, and TV dashboards, local lighting control, pet-feeder monitoring, and a house-sitter mode." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Home Server — Andrew Battenberg" />
+  <meta property="og:description" content="Andrew Battenberg runs Home Assistant on a Mac mini, with custom tablet, phone, and TV dashboards, local lighting control, pet-feeder monitoring, and a house-sitter mode." />
+  <meta property="og:url" content="https://asbatty.github.io/project-portfolio/projects/home-server/" />
+  <meta property="og:image" content="https://asbatty.github.io/project-portfolio/projects/home-server/thumb.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="../../index.html">Andrew Battenberg</a>
+    <ul class="nav-links">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../index.html">Projects</a></li>
+      <li><a href="../../index.html#about">About</a></li>
+      <li><a href="../../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <div class="project-hero">
+        <div class="breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span>/</span>
+          <a href="../index.html">Projects</a>
+          <span>/</span>
+          <span>Home Server</span>
+        </div>
+        <h1>Home Server</h1>
+        <p class="subtitle">
+          I turned a Mac mini into a Home Assistant server that ties together my lights, TV,
+          thermostat, robot vacuum, and my cat's feeder, with custom dashboards for a wall tablet,
+          my phone, and the TV.
+        </p>
+        <div class="project-meta">
+          <div class="meta-item">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">Personal project</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Date</span>
+            <span class="meta-value">Sep 2026 – present</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">Setup, configuration, scripting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-content">
+
+        <div class="content-section">
+          <h2>Overview</h2>
+          <p>
+            The server is a headless Mac mini running Home Assistant natively in a Python virtual
+            environment. macOS launch agents start it, instead of Docker or Home Assistant OS, and a
+            Matter server and Thread border router run alongside it for the newer bulbs. I reach it
+            from outside the house through Tailscale without opening any ports. Every configuration
+            change goes through a small check, validate, and restart script and then gets committed
+            to Git, so I can roll back a bad change or rebuild the whole setup.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Dashboards and controls</h2>
+          <p>
+            I built the dashboards with Mushroom cards and card-mod. There's a control panel for the
+            wall tablet, a phone dashboard, and a "newspaper" page with the weather, the news, and a
+            quick read on the house. The lamps are grouped by room, and each one has brightness,
+            color temperature, and color controls. Modes like Movie and Warm Glow set the whole room
+            at once, and a wake-up routine brings the bedroom lamps up in the morning.
+          </p>
+          <p>
+            The Fire TV and the Samsung TV share one panel with a remote and a single TV power
+            button. My <a href="../fire-tv-hud/index.html">Fire TV HUD</a> runs off this same
+            server, so the TV can show the lamps, modes, and alerts too.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Designing for failure</h2>
+          <p>
+            The most interesting problems were about what happens when something breaks. My cat's
+            feeder once missed a meal during a Wi-Fi outage because it depended on Home Assistant, so
+            I flipped the design. Now the feeder runs its own schedule, and Home Assistant only
+            watches it, alerts me if a meal is missed or the hopper runs low, and steps in as a
+            backup. I also traced a recurring feeder lockup to a known firmware issue in the Tuya
+            local protocol and wrote up a recovery procedure for it.
+          </p>
+          <p>
+            Custom cards kept failing to load after updates because the app cached an old resource
+            list. I moved them to load through the frontend's extra module setting, so Home
+            Assistant injects them on every page load and the dashboards stay consistent.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>House-sitter mode</h2>
+          <p>
+            For trips, a vacation mode pauses the routines meant for when I'm home and holds the
+            robot vacuum until just before I get back. A house sitter gets their own account with a
+            stripped-down dashboard: lamp controls that switch themselves off after an hour, a way to
+            feed the cat, and written instructions for the house. Everything else stays admin-only.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Screenshots</h2>
+          <div class="gallery gallery-wide gallery-contain">
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The wall tablet's main panel has the clock, weather, every lamp by room, and a Fire TV remote.">
+              <img src="ha-tablet.png" alt="The wall tablet's main panel has the clock, weather, every lamp by room, and a Fire TV remote." />
+              <div class="gallery-caption">The wall tablet's main panel has the clock, weather, every lamp by room, and a Fire TV remote.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The newspaper page pulls the weather, the sky, the news, and a quick read on the house into one view.">
+              <img src="ha-newspaper.png" alt="The newspaper page pulls the weather, the sky, the news, and a quick read on the house into one view." />
+              <div class="gallery-caption">The newspaper page pulls the weather, the sky, the news, and a quick read on the house into one view.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="A house sitter gets this stripped-down dashboard with lamp controls and written instructions.">
+              <img src="ha-housesitter.png" alt="A house sitter gets this stripped-down dashboard with lamp controls and written instructions." />
+              <div class="gallery-caption">A house sitter gets this stripped-down dashboard with lamp controls and written instructions.</div>
+            </div>
+
+          </div>
+          <div style="height: 8px;"></div>
+          <div class="gallery gallery-portrait gallery-contain">
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The phone dashboard puts lights, the thermostat, TV modes, and the robot vacuum on one screen.">
+              <img src="ha-phone.png" alt="The phone dashboard puts lights, the thermostat, TV modes, and the robot vacuum on one screen." />
+              <div class="gallery-caption">The phone dashboard puts lights, the thermostat, TV modes, and the robot vacuum on one screen.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Each lamp has its own brightness slider, and one tap switches the room to a mode like Warm Glow.">
+              <img src="ha-lights.png" alt="Each lamp has its own brightness slider, and one tap switches the room to a mode like Warm Glow." />
+              <div class="gallery-caption">Each lamp has its own brightness slider, and one tap switches the room to a mode like Warm Glow.</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" style="color: var(--text-tertiary);">← Back to all projects</a>
+        <span style="color: var(--text-tertiary);">Andrew Battenberg — 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      if (!img) return;
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = el.dataset.caption || '';
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
