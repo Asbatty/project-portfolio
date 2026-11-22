@@ -63,14 +63,20 @@
           <!-- LED-MATRIX: overview -->
           <p>
             The panel is 64×32 RGB, which is 2,048 LEDs at a 4 mm pitch, roughly 10 by 5 inches. An ESP32
-            drives it from inside a frame that holds the panel and electronics. It's lit now and sits on a
-            bookshelf, cycling through a clock and animated patterns.
+            drives it from inside a frame that holds the panel and electronics. It sits on a bookshelf and
+            cycles through a clock, animated art, and a stick figure acting out the current weather.
+            Home Assistant sends it messages and alerts over MQTT.
           </p>
         </div>
 
         <div class="content-section">
           <h2>Images</h2>
           <div class="gallery" id="gallery">
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The frame on its bookshelf, running the plasma art with the time in the corner.">
+              <img src="led-shelf.jpg" alt="The frame on its bookshelf, running the plasma art with the time in the corner." />
+              <div class="gallery-caption">The frame on its bookshelf, running the plasma art with the time in the corner.</div>
+            </div>
+
             <div class="gallery-item" onclick="openLightbox(this)" data-caption="The clock screen shows the time and date, with a small animation in the corner.">
               <img src="led-clock.jpg" alt="The clock screen shows the time and date, with a small animation in the corner." />
               <div class="gallery-caption">The clock screen shows the time and date, with a small animation in the corner.</div>
@@ -79,6 +85,58 @@
             <div class="gallery-item" onclick="openLightbox(this)" data-caption="A plasma animation fills the panel, with the time in the corner.">
               <img src="led-plasma.jpg" alt="A plasma animation fills the panel, with the time in the corner." />
               <div class="gallery-caption">A plasma animation fills the panel, with the time in the corner.</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2>Screens</h2>
+          <p>These are captures of what the panel draws, taken from the frame's own web interface.</p>
+          <div class="gallery">
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The clock face, with the current weather in the corner.">
+              <img src="screens/clock.png" alt="The clock face, with the current weather in the corner." />
+              <div class="gallery-caption">The clock face, with the current weather in the corner.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Sunny: the stick figure sunbathes.">
+              <img src="screens/weather-sunny.png" alt="Sunny: the stick figure sunbathes." />
+              <div class="gallery-caption">Sunny: the stick figure sunbathes.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Rainy: out comes the umbrella.">
+              <img src="screens/weather-rainy.png" alt="Rainy: out comes the umbrella." />
+              <div class="gallery-caption">Rainy: out comes the umbrella.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Thunderstorm: hair on end.">
+              <img src="screens/weather-lightning.png" alt="Thunderstorm: hair on end." />
+              <div class="gallery-caption">Thunderstorm: hair on end.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Snowy: building a snowman.">
+              <img src="screens/weather-snowy.png" alt="Snowy: building a snowman." />
+              <div class="gallery-caption">Snowy: building a snowman.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Pouring: swimming.">
+              <img src="screens/weather-pouring.png" alt="Pouring: swimming." />
+              <div class="gallery-caption">Pouring: swimming.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Windy: hanging on to a pole.">
+              <img src="screens/weather-windy.png" alt="Windy: hanging on to a pole." />
+              <div class="gallery-caption">Windy: hanging on to a pole.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="An animated plasma pattern with a small clock.">
+              <img src="screens/art.png" alt="An animated plasma pattern with a small clock." />
+              <div class="gallery-caption">An animated plasma pattern with a small clock.</div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="Messages from Home Assistant scroll across the panel.">
+              <img src="screens/message.png" alt="Messages from Home Assistant scroll across the panel." />
+              <div class="gallery-caption">Messages from Home Assistant scroll across the panel.</div>
             </div>
 
           </div>
