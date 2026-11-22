@@ -63,17 +63,24 @@
           <!-- LED-MATRIX: overview -->
           <p>
             The panel is 64×32 RGB, which is 2,048 LEDs at a 4 mm pitch, roughly 10 by 5 inches. An ESP32
-            drives it, and I'm still designing the frame that holds the panel and electronics. There
-            isn't much to show yet, so this page will fill in once it's lit.
+            drives it from inside a frame that holds the panel and electronics. It's lit now and sits on a
+            bookshelf, cycling through a clock and animated patterns.
           </p>
         </div>
 
         <div class="content-section">
           <h2>Images</h2>
           <div class="gallery" id="gallery">
-            <div class="gallery-item">
-              <div class="gallery-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Photos are coming soon.</span></div>
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="The clock screen shows the time and date, with a small animation in the corner.">
+              <img src="led-clock.jpg" alt="The clock screen shows the time and date, with a small animation in the corner." />
+              <div class="gallery-caption">The clock screen shows the time and date, with a small animation in the corner.</div>
             </div>
+
+            <div class="gallery-item" onclick="openLightbox(this)" data-caption="A plasma animation fills the panel, with the time in the corner.">
+              <img src="led-plasma.jpg" alt="A plasma animation fills the panel, with the time in the corner." />
+              <div class="gallery-caption">A plasma animation fills the panel, with the time in the corner.</div>
+            </div>
+
           </div>
         </div>
 
